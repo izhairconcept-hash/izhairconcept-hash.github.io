@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO PRIMARY -->
+  <title>Blog | IZ Hair Concept – Saúde Capilar & Transformação</title>
+  <meta name="description" content="Acompanhe as últimas tendências em coloração, tricologia e cuidados capilares no blog do IZ Hair Concept. Dicas exclusivas por Izabella Miranda." />
+  <link rel="canonical" href="https://izhairconcept.com.br/blog.html" />
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — IZ Hair Concept
+    ============================================================ */
+    :root {
+      --gold:       #C9A96E;
+      --gold-light: #E8D5B0;
+      --gold-dark:  #A07840;
+      --cream:      #FAF7F2;
+      --warm-white: #F5F0E8;
+      --charcoal:   #1A1714;
+      --mid:        #3D3530;
+      --muted:      #8A7D72;
+      --border:     rgba(201,169,110,0.25);
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Jost', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(250,247,242,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+    .logo-iz { font-family: var(--ff-display); font-size: 2rem; font-weight: 300; letter-spacing: 0.15em; color: var(--gold); }
+    .logo-sub { font-family: var(--ff-body); font-size: 0.55rem; font-weight: 400; letter-spacing: 0.35em; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a { font-family: var(--ff-body); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; position: relative; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { font-family: var(--ff-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cream) !important; background: var(--gold); padding: 10px 24px; text-decoration: none; transition: background 0.25s; }
+    .nav-cta:hover { background: var(--gold-dark); }
+
+    /* ── BLOG CONTENT ── */
+    .blog-hero { padding: 160px 0 80px; background: var(--charcoal); color: var(--warm-white); text-align: center; }
+    .blog-hero h1 { font-family: var(--ff-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; margin-bottom: 20px; }
+    .blog-hero p { font-family: var(--ff-body); font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+
+    .post-container { max-width: 800px; margin: -40px auto 100px; background: #fff; padding: 60px 80px; box-shadow: 0 30px 60px rgba(0,0,0,0.05); position: relative; z-index: 10; }
+    @media (max-width: 768px) { .post-container { padding: 40px 24px; margin-top: 0; } }
+
+    .post-header { margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+    .post-header h2 { font-family: var(--ff-display); font-size: 2.5rem; font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 20px; }
+    .post-header em { font-family: var(--ff-display); font-style: italic; color: var(--muted); font-size: 1.2rem; }
+
+    .post-content h2 { font-family: var(--ff-display); font-size: 1.8rem; font-weight: 400; color: var(--gold-dark); margin: 40px 0 20px; }
+    .post-content p { margin-bottom: 20px; color: var(--mid); font-size: 1.1rem; }
+    .post-content strong { color: var(--charcoal); font-weight: 500; }
+    .post-content ul { margin-bottom: 30px; list-style: none; }
+    .post-content li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+    .post-content li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+    .post-footer { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); text-align: center; }
+    .post-footer h3 { font-family: var(--ff-display); font-size: 1.8rem; font-weight: 300; margin-bottom: 20px; }
+    .btn-whatsapp { display: inline-block; background: var(--gold); color: #fff; padding: 18px 35px; text-decoration: none; font-family: var(--ff-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; transition: background 0.3s; margin-top: 20px; }
+    .btn-whatsapp:hover { background: var(--gold-dark); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--charcoal); color: var(--warm-white); padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .footer-brand p { color: var(--muted); margin: 20px 0; font-size: 0.9rem; max-width: 300px; }
+    .footer-social { display: flex; gap: 15px; }
+    .social-link { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--gold); font-size: 0.8rem; transition: 0.3s; }
+    .social-link:hover { background: var(--gold); color: var(--charcoal); }
+    .footer-col h4 { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 400; color: var(--gold); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
+
+    /* WhatsApp flutuante */
+    .wa-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 99; transition: transform 0.3s; }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float svg { width: 30px; height: 30px; }
+  </style>
+</head>
+<body>
+
+  <header id="site-header">
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <span class="logo-iz">IZ</span>
+          <span class="logo-sub">Hair Concept · by Izabella Miranda</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html#sobre">Sobre</a>
+          <a href="index.html#servicos">Serviços</a>
+          <a href="blog.html">Blog</a>
+          <a href="https://wa.me/5531992555714" class="nav-cta">Agendar</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="blog-hero">
+      <div class="container">
+        <p>Expertise em Fios</p>
+        <h1>Blog IZ Hair Concept</h1>
+      </div>
+    </section>
+
+    <article class="post-container">
+      <header class="post-header">
+        <h2>Método IZ: Por que escolher o Alinhamento Capilar sem Formol de Alta Performance?</h2>
+        <p><em>Transformação, segurança e sofisticação para fios que exigem o melhor.</em></p>
+      </header>
+
+      <div class="post-content">
+        <section>
+          <h2>A Evolução da Selagem Térmica: Adeus ao Formol</h2>
+          <p>
+            No <strong>IZ Hair Concept</strong>, acreditamos que a beleza jamais deve comprometer a integridade da fibra. Muitas mulheres ainda buscam pela tradicional "selagem", mas o mercado mudou. O <strong>Método IZ</strong> não é apenas um alisamento; é uma terapia de realinhamento cuticular.
+          </p>
+          <p>
+            Diferente dos processos químicos agressivos, nossa tecnologia é <strong>100% livre de formol</strong>, utilizando ativos biocompatíveis que permitem um <strong>loiro saudável</strong> e fios com movimento natural.
+          </p>
+        </section>
+
+        <section>
+          <h2>Os Diferenciais do Método IZ</h2>
+          <ul>
+            <li><strong>Personalização Absoluta:</strong> Cada fibra capilar é analisada antes da aplicação.</li>
+            <li><strong>Tecnologia de Aminoácidos:</strong> Selagem das cutículas com reposição de massa, garantindo brilho espelhado.</li>
+            <li><strong>Compatibilidade:</strong> Ideal para quem busca manter a saúde capilar mesmo com processos de coloração.</li>
+            <li><strong>Conforto Olfativo:</strong> Sem fumaça tóxica, sem ardência, apenas luxo e bem-estar.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Terapia Capilar e Manutenção do Liso</h2>
+          <p>
+            Para manter o resultado de salão por mais tempo, o Método IZ integra conceitos de <strong>terapia capilar</strong>. Tratamos o couro cabeludo e a haste, garantindo que o alinhamento seja sinônimo de força, e não de quebra. Se você busca o <strong>liso perfeito</strong> com a segurança de um protocolo exclusivo, você encontrou o seu lugar.
+          </p>
+        </section>
+      </div>
+
+      <footer class="post-footer">
+        <h3>Pronta para elevar o padrão do seu cabelo?</h3>
+        <p>
+          Não entregue seus fios a qualquer procedimento. Experimente a exclusividade do <strong>Método IZ</strong> e sinta a diferença de um cabelo verdadeiramente saudável e alinhado.
+        </p>
+        <a href="https://wa.me/5531992555714" class="btn-whatsapp">
+          AGENDAR CONSULTA VIA WHATSAPP
+        </a>
+      </footer>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-iz">IZ</span>
+            <span class="logo-sub">Hair Concept · by Izabella Miranda</span>
+          </a>
+          <p>Salão de beleza premium especializado em coloração artística e tricologia no bairro Funcionários, Belo Horizonte.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/izhairconcept/" class="social-link" target="_blank">ig</a>
+            <a href="https://www.instagram.com/izabellamirandabeauty/" class="social-link" target="_blank">iz</a>
+            <a href="https://wa.me/5531992555714" class="social-link" target="_blank">wa</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="index.html#servicos">Coloração Artística</a></li>
+            <li><a href="index.html#servicos">Tricologia</a></li>
+            <li><a href="index.html#servicos">Mechas & Luzes</a></li>
+            <li><a href="index.html#servicos">Unhas de Gel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Localização</h4>
+          <address style="font-style: normal; color: var(--muted); font-size: 0.9rem;">
+            Rua Piauí, 1285<br>
+            Funcionários, BH – MG<br><br>
+            <a href="https://wa.me/5531992555714" style="color:var(--gold);text-decoration:none;">(31) 9 9255-5714</a>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 IZ Hair Concept. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ♥ em Belo Horizonte</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5531992555714" class="wa-float" target="_blank">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+</body>
+</html>
