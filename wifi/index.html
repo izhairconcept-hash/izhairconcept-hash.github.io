@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
+        /* Estética Iz Hair Concept: Preto e Dourado */
         body { 
             background-color: #000000; 
             color: #D4AF37; 
@@ -17,22 +18,54 @@
         }
 
         .container { max-width: 400px; margin: 0 auto; }
-        .logo { width: 180px; margin-bottom: 30px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 24px; text-transform: uppercase; letter-spacing: 3px; }
-        p { color: #ffffff; font-size: 14px; margin-bottom: 40px; font-weight: 300; }
+        
+        .logo { 
+            width: 180px; 
+            margin-bottom: 30px; 
+            filter: drop-shadow(0px 0px 5px rgba(212, 175, 55, 0.3));
+        }
 
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 24px; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin-bottom: 10px;
+        }
+
+        p { 
+            color: #ffffff; 
+            font-size: 14px; 
+            margin-bottom: 40px; 
+            font-weight: 300; 
+            line-height: 1.6;
+        }
+
+        /* Estilo dos Botões */
         .btn { 
-            display: block; width: 100%; padding: 18px; margin: 15px 0;
-            border: 1px solid #D4AF37; color: #D4AF37; text-decoration: none; 
-            font-size: 13px; font-weight: bold; text-transform: uppercase;
-            letter-spacing: 2px; border-radius: 2px; transition: all 0.4s ease;
+            display: block; 
+            width: 100%; 
+            padding: 18px; 
+            margin: 15px 0;
+            border: 1px solid #D4AF37; 
+            color: #D4AF37; 
+            text-decoration: none; 
+            font-size: 13px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 2px; 
+            border-radius: 2px; 
+            transition: all 0.4s ease;
             box-sizing: border-box;
         }
 
-        .btn:hover { background-color: #D4AF37; color: #000; }
+        .btn:hover { 
+            background-color: #D4AF37; 
+            color: #000; 
+        }
 
-        /* Painel de Senha (Escondido) */
-        #dadosWifi { 
+        /* Painel de Acesso Liberado (Invisível inicialmente) */
+        #areaVip { 
             display: none; 
             margin-top: 30px;
             padding: 20px;
@@ -44,12 +77,16 @@
         .info-label { color: #888; font-size: 10px; text-transform: uppercase; margin-bottom: 5px; }
         .info-value { color: #D4AF37; font-size: 18px; font-weight: 600; margin-bottom: 15px; letter-spacing: 1px; }
 
-        #wifiBtn { background-color: #D4AF37; color: #000; border: none; }
+        /* Destaque para os botões de ação final */
+        .btn-gold { background-color: #D4AF37; color: #000; border: none; }
+        .btn-white { border-color: #ffffff; color: #ffffff; margin-top: 20px; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        footer { margin-top: 50px; font-size: 10px; color: #444; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -58,32 +95,40 @@
         <img src="https://izhairconcept.com.br/logo.png" alt="Iz Hair Concept" class="logo">
         
         <h1>Conexão VIP</h1>
-        <p>Sua presença é um prazer.<br>Avalie nosso atendimento para liberar o acesso à rede.</p>
+        <p>Para liberar o acesso à rede Wi-Fi de alta velocidade, por favor, deixe sua avaliação sobre nossa experiência.</p>
 
         <a href="https://search.google.com/local/writereview?placeid=ChIJdfcFBj2ZpgARpCJAiGMjte4" 
-           target="_blank" class="btn" onclick="liberarAcesso()">
-           1. Avaliar no Google
+           target="_blank" 
+           class="btn" 
+           onclick="liberarAcesso()">
+           1. AVALIAR NO GOOGLE
         </a>
 
-        <div id="dadosWifi">
+        <div id="areaVip">
             <div class="info-label">Rede:</div>
             <div class="info-value">VIVO-E3D8</div>
             
             <div class="info-label">Senha:</div>
             <div class="info-value">75463215</div>
 
-            <a href="WIFI:S:VIVO-E3D8;T:WPA;P:75463215;;" id="wifiBtn" class="btn">
-                Conectar Automaticamente
+            <a href="WIFI:S:VIVO-E3D8;T:WPA;P:75463215;;" class="btn btn-gold">
+                CONECTAR AUTOMATICAMENTE
+            </a>
+
+            <a href="contato.vcf" class="btn btn-white">
+                💾 SALVAR CONTATO DO SALÃO
             </a>
         </div>
 
-        <footer style="margin-top: 50px; font-size: 10px; color: #444;">IZ HAIR CONCEPT</footer>
+        <footer>IZ HAIR CONCEPT &copy; 2026</footer>
     </div>
 
     <script>
         function liberarAcesso() {
+            // Aguarda o clique e mostra as informações após 2 segundos
             setTimeout(function() {
-                document.getElementById('dadosWifi').style.display = 'block';
+                document.getElementById('areaVip').style.display = 'block';
+                // Rola suavemente para os dados liberados
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }, 2000);
         }
