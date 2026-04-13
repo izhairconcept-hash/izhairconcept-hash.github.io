@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wi-Fi VIP | Iz Hair Concept</title>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLC9N89TR8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZLC9N89TR8');
+    </script>
+
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -20,27 +28,24 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=699997550083507&ev=PageView&noscript=1"
     /></noscript>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Estética Iz Hair Concept: Preto e Dourado */
         body { 
             background-color: #000000; 
             color: #D4AF37; 
             font-family: 'Montserrat', sans-serif; 
             text-align: center; 
-            padding: 40px 20px;
-            margin: 0;
+            padding: 40px 20px; 
+            margin: 0; 
         }
-
         .container { max-width: 400px; margin: 0 auto; }
-        
         .logo { 
             width: 180px; 
             margin-bottom: 30px; 
-            filter: drop-shadow(0px 0px 5px rgba(212, 175, 55, 0.3));
+            filter: drop-shadow(0px 0px 5px rgba(212, 175, 55, 0.3)); 
         }
-
         h1 { 
             font-family: 'Playfair Display', serif; 
             font-size: 24px; 
@@ -48,7 +53,6 @@
             letter-spacing: 3px; 
             margin-bottom: 10px;
         }
-
         p { 
             color: #ffffff; 
             font-size: 14px; 
@@ -56,71 +60,59 @@
             font-weight: 300; 
             line-height: 1.6;
         }
-
         .btn { 
             display: block; 
             width: 100%; 
             padding: 18px; 
-            margin: 15px 0;
+            margin: 15px 0; 
             border: 1px solid #D4AF37; 
             color: #D4AF37; 
             text-decoration: none; 
             font-size: 13px; 
             font-weight: bold; 
-            text-transform: uppercase;
+            text-transform: uppercase; 
             letter-spacing: 2px; 
             border-radius: 2px; 
-            transition: all 0.4s ease;
-            box-sizing: border-box;
+            transition: all 0.4s ease; 
+            box-sizing: border-box; 
         }
-
         .btn:hover { 
             background-color: #D4AF37; 
             color: #000; 
         }
-
         #areaVip { 
             display: none; 
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px double #D4AF37;
-            background: rgba(212, 175, 55, 0.05);
-            animation: fadeIn 1s ease-in;
+            margin-top: 30px; 
+            padding: 20px; 
+            border: 1px double #D4AF37; 
+            background: rgba(212, 175, 55, 0.05); 
+            animation: fadeIn 1s ease-in; 
         }
-
         .info-label { color: #888; font-size: 10px; text-transform: uppercase; margin-bottom: 5px; }
         .info-value { color: #D4AF37; font-size: 18px; font-weight: 600; margin-bottom: 15px; letter-spacing: 1px; }
-
         .btn-gold { background-color: #D4AF37; color: #000; border: none; }
         .btn-white { border-color: #ffffff; color: #ffffff; margin-top: 20px; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
         }
-
         footer { margin-top: 50px; font-size: 10px; color: #444; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <img src="https://izhairconcept.com.br/logo.png" alt="Iz Hair Concept" class="logo">
-        
         <h1>Conexão VIP</h1>
-        <p>Para liberar o acesso à rede Wi-Fi de alta velocidade, por favor, deixe sua avaliação sobre nossa experiência.</p>
-
+        <p>Para liberar o acesso à rede Wi-Fi, por favor, deixe sua avaliação sobre nossa experiência.</p>
+        
         <a href="https://search.google.com/local/writereview?placeid=ChIJdfcFBj2ZpgARpCJAiGMjte4" 
-           target="_blank" 
-           class="btn" 
-           onclick="liberarAcesso()">
+           target="_blank" class="btn" onclick="liberarAcesso()">
            1. AVALIAR NO GOOGLE
         </a>
 
         <div id="areaVip">
             <div class="info-label">Rede:</div>
             <div class="info-value">VIVO-E3D8</div>
-            
             <div class="info-label">Senha:</div>
             <div class="info-value">75463215</div>
 
@@ -129,3 +121,28 @@
             </a>
 
             <a href="contato.vcf" class="btn btn-white">
+                💾 SALVAR CONTATO DO SALÃO
+            </a>
+        </div>
+        <footer>IZ HAIR CONCEPT &copy; 2026</footer>
+    </div>
+
+    <script>
+        function liberarAcesso() {
+            setTimeout(function() {
+                document.getElementById('areaVip').style.display = 'block';
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                
+                // Track no Meta Pixel
+                fbq('track', 'Lead');
+                
+                // Track no Google Analytics
+                gtag('event', 'acesso_wifi', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Avaliação realizada'
+                });
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
