@@ -32,70 +32,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        body { 
-            background-color: #000000; 
-            color: #D4AF37; 
-            font-family: 'Montserrat', sans-serif; 
-            text-align: center; 
-            padding: 40px 20px; 
-            margin: 0; 
-        }
+        body { background-color: #000000; color: #D4AF37; font-family: 'Montserrat', sans-serif; text-align: center; padding: 40px 20px; margin: 0; }
         .container { max-width: 400px; margin: 0 auto; }
-        .logo { 
-            width: 180px; 
-            margin-bottom: 30px; 
-            filter: drop-shadow(0px 0px 5px rgba(212, 175, 55, 0.3)); 
-        }
-        h1 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 24px; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            margin-bottom: 10px;
-        }
-        p { 
-            color: #ffffff; 
-            font-size: 14px; 
-            margin-bottom: 40px; 
-            font-weight: 300; 
-            line-height: 1.6;
-        }
-        .btn { 
-            display: block; 
-            width: 100%; 
-            padding: 18px; 
-            margin: 15px 0; 
-            border: 1px solid #D4AF37; 
-            color: #D4AF37; 
-            text-decoration: none; 
-            font-size: 13px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            border-radius: 2px; 
-            transition: all 0.4s ease; 
-            box-sizing: border-box; 
-        }
-        .btn:hover { 
-            background-color: #D4AF37; 
-            color: #000; 
-        }
-        #areaVip { 
-            display: none; 
-            margin-top: 30px; 
-            padding: 20px; 
-            border: 1px double #D4AF37; 
-            background: rgba(212, 175, 55, 0.05); 
-            animation: fadeIn 1s ease-in; 
-        }
+        .logo { width: 180px; margin-bottom: 30px; filter: drop-shadow(0px 0px 5px rgba(212, 175, 55, 0.3)); }
+        h1 { font-family: 'Playfair Display', serif; font-size: 24px; text-transform: uppercase; letter-spacing: 3px; }
+        p { color: #ffffff; font-size: 14px; margin-bottom: 40px; font-weight: 300; line-height: 1.6; }
+        .btn { display: block; width: 100%; padding: 18px; margin: 15px 0; border: 1px solid #D4AF37; color: #D4AF37; text-decoration: none; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 2px; transition: all 0.4s ease; box-sizing: border-box; }
+        .btn:hover { background-color: #D4AF37; color: #000; }
+        #areaVip { display: none; margin-top: 30px; padding: 20px; border: 1px double #D4AF37; background: rgba(212, 175, 55, 0.05); animation: fadeIn 1s ease-in; }
         .info-label { color: #888; font-size: 10px; text-transform: uppercase; margin-bottom: 5px; }
         .info-value { color: #D4AF37; font-size: 18px; font-weight: 600; margin-bottom: 15px; letter-spacing: 1px; }
         .btn-gold { background-color: #D4AF37; color: #000; border: none; }
         .btn-white { border-color: #ffffff; color: #ffffff; margin-top: 20px; }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         footer { margin-top: 50px; font-size: 10px; color: #444; letter-spacing: 1px; }
     </style>
 </head>
@@ -116,13 +65,8 @@
             <div class="info-label">Senha:</div>
             <div class="info-value">75463215</div>
 
-            <a href="WIFI:S:VIVO-E3D8;T:WPA;P:75463215;;" class="btn btn-gold">
-                CONECTAR AUTOMATICAMENTE
-            </a>
-
-            <a href="contato.vcf" class="btn btn-white">
-                💾 SALVAR CONTATO DO SALÃO
-            </a>
+            <a href="WIFI:S:VIVO-E3D8;T:WPA;P:75463215;;" class="btn btn-gold">CONECTAR AUTOMATICAMENTE</a>
+            <a href="contato.vcf" class="btn btn-white">💾 SALVAR CONTATO DO SALÃO</a>
         </div>
         <footer>IZ HAIR CONCEPT &copy; 2026</footer>
     </div>
@@ -137,10 +81,12 @@
                 fbq('track', 'Lead');
                 
                 // Track no Google Analytics
-                gtag('event', 'acesso_wifi', {
-                    'event_category': 'Engagement',
-                    'event_label': 'Avaliação realizada'
-                });
+                gtag('event', 'acesso_wifi');
+
+                // Envio para sua Planilha Google
+                var scriptURL = "https://script.google.com/macros/s/AKfycbzm6BBlqa839Ml4kKIMJJXHON5tCwoS6HOCuoKCZQS8urAZAAWDgWlMJ2OVfCBjwlCnRA/exec";
+                fetch(scriptURL + "?device=" + navigator.platform, { mode: 'no-cors' });
+
             }, 2000);
         }
     </script>
