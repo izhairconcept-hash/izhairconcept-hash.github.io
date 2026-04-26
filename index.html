@@ -119,6 +119,13 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Adicionado apenas para corrigir a proporção das imagens */
+    .sobre-img-placeholder img, .galeria-item img, .placeholder-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--cream); }
@@ -529,51 +536,43 @@
     }
 
     /* ============================================================
-        GALERIA ATUALIZADA - PADRÃO DE LUXO
+        GALERIA
     ============================================================ */
     .galeria-header { text-align: center; margin-bottom: 80px; }
-    
     .galeria-grid {
       display: grid;
-      /* Define 3 colunas iguais no desktop */
-      grid-template-columns: repeat(3, 1fr); 
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 300px);
       gap: 20px;
     }
-    
-    .galeria-item { 
-        position: relative; 
-        overflow: hidden; 
-        /* Define uma altura fixa para que todas as fotos fiquem alinhadas */
-        height: 400px; 
+    .galeria-item { position: relative; overflow: hidden; }
+    .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .placeholder-img {
+      width: 100%; height: 100%;
+      background: var(--warm-white);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
     }
-    
-    /* Removemos o mosaico para manter a proporção limpa */
-    .galeria-item:nth-child(1) { grid-column: auto; grid-row: auto; }
-
-    .galeria-item img {
-      width: 100%; 
-      height: 100%;
-      /* O SEGREDO: preenche o quadrado cortando sobras sem esticar */
-      object-fit: cover; 
-      object-position: center;
-      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    .placeholder-img::after {
+      content: attr(data-label);
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
     }
-
-    .galeria-item:hover img { transform: scale(1.08); }
-    
+    .galeria-item:hover .placeholder-img { transform: scale(1.05); }
     .galeria-overlay {
       position: absolute; inset: 0;
       background: rgba(26,23,20,0.4);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; transition: opacity 0.4s;
     }
-    
     .galeria-overlay span {
       color: #fff; font-family: var(--ff-body);
       font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em;
-      border: 1px solid #fff; padding: 10px 24px;
+      border: 1px solid #fff; padding: 10px 20px;
     }
-    
     .galeria-item:hover .galeria-overlay { opacity: 1; }
     .galeria-cta { text-align: center; margin-top: 60px; }
 
@@ -696,7 +695,8 @@
       .sobre-grid, .trico-grid, .footer-grid, .lead-grid { grid-template-columns: 1fr; gap: 60px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .galeria-grid { grid-template-columns: repeat(1, 1fr); gap: 20px; } /* Mobile: 1 coluna */
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 1; aspect-ratio: 16/9; }
       .hero-content { margin-left: 0; text-align: center; padding-top: 160px; }
       .hero-actions { justify-content: center; }
       .hero-badge { display: none; }
@@ -915,36 +915,41 @@
           <p style="font-size:0.85rem;color:var(--muted);margin-top:12px;">Cada foto é uma história de cuidado e transformação</p>
         </div>
 
-        <div class="galeria-grid" role="list">
+        <div class="galeria-grid" role="list" aria-label="Galeria de transformações capilares">
 
-          <div class="galeria-item reveal">
+          <div class="galeria-item reveal" role="listitem">
+            <div class="placeholder-img" data-label="Coloração">
               <img src="images/loiro-premium-funcionarios.jpg" alt="Loiro Signature Premium BH">
-              <div class="galeria-overlay"><span>Loiro Signature</span></div>
+            </div>
+            <div class="galeria-overlay"><span>Loiro Platinado</span></div>
           </div>
 
-          <div class="galeria-item reveal reveal-delay-1">
-              <img src="images/mechas-loiras-saudaveis.jpg" alt="Mechas Loiras Saudáveis">
-              <div class="galeria-overlay"><span>Loiro Saudável</span></div>
+          <div class="galeria-item reveal reveal-delay-1" role="listitem">
+            <div class="placeholder-img" data-label="Mechas">
+              <img src="images/mechas-loiras-saudaveis.jpg" alt="Mechas Loiras Saudáveis e Brilhantes">
+            </div>
+            <div class="galeria-overlay"><span>Mechas Naturais</span></div>
           </div>
 
-          <div class="galeria-item reveal reveal-delay-2">
-              <img src="images/morena-iluminada-bh.jpg" alt="Morena Iluminada BH">
-              <div class="galeria-overlay"><span>Iluminado</span></div>
+          <div class="galeria-item reveal reveal-delay-2" role="listitem">
+            <div class="placeholder-img" data-label="Balayage">
+              <img src="images/morena-iluminada-bh.jpg" alt="Morena Iluminada BH Sofisticada">
+            </div>
+            <div class="galeria-overlay"><span>Balayage Caramelo</span></div>
           </div>
 
-          <div class="galeria-item reveal">
-              <img src="images/coloracao-ruivo-concept.jpg" alt="Coloração Ruiva Personalizada">
-              <div class="galeria-overlay"><span>Color Art</span></div>
+          <div class="galeria-item reveal reveal-delay-1" role="listitem">
+            <div class="placeholder-img" data-label="Ombré">
+              <img src="images/coloracao-ruivo-concept.jpg" alt="Ruivo Concept e Design de Cor">
+            </div>
+            <div class="galeria-overlay"><span>Ombré Hair</span></div>
           </div>
 
-          <div class="galeria-item reveal reveal-delay-1">
-              <img src="images/maquiagem-social-premium.jpg" alt="Maquiagem Profissional Premium">
-              <div class="galeria-overlay"><span>Beleza & Glow</span></div>
-          </div>
-
-          <div class="galeria-item reveal reveal-delay-2">
-              <img src="images/unhas-gel-perfeitas.jpg" alt="Manicure Premium em BH">
-              <div class="galeria-overlay"><span>Nail Design</span></div>
+          <div class="galeria-item reveal reveal-delay-2" role="listitem">
+            <div class="placeholder-img" data-label="Cor">
+              <img src="images/maquiagem-social-premium.jpg" alt="Maquiagem Social de Luxo BH">
+            </div>
+            <div class="galeria-overlay"><span>Beleza & Glow</span></div>
           </div>
 
         </div>
@@ -1056,11 +1061,16 @@
   </a>
 
   <script>
+    // Ativação dos ícones Lucide
     lucide.createIcons();
+
+    // ── Header scroll ──
     const header = document.getElementById("site-header");
     window.addEventListener("scroll", () => {
       header.classList.toggle("scrolled", window.scrollY > 60);
     }, { passive: true });
+
+    // ── Hamburger menu ──
     const hamburger = document.getElementById("hamburger-btn");
     const mobileMenu = document.getElementById("mobile-menu");
     hamburger.addEventListener("click", () => {
@@ -1069,6 +1079,8 @@
     mobileMenu.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => mobileMenu.classList.remove("open"));
     });
+
+    // ── Scroll reveal ──
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1078,6 +1090,8 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // ── Smooth scroll for anchor links ──
     document.querySelectorAll("a[href^='#']").forEach(anchor => {
       anchor.addEventListener("click", function(e) {
         const target = document.querySelector(this.getAttribute("href"));
@@ -1087,11 +1101,15 @@
         }
       });
     });
+
+    // Form Integration
     const leadForm = document.getElementById("lead-form");
     const statusMsg = document.getElementById("form-status");
     const submitBtn = document.getElementById("submit-btn");
+
     leadForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      
       const formData = {
         nome: document.getElementById("nome").value,
         telefone: document.getElementById("telefone").value,
@@ -1099,19 +1117,41 @@
         origem: "Site Oficial - Form Principal",
         data: new Date().toLocaleString("pt-BR")
       };
+
+      // URL REAL DO GOOGLE APPS SCRIPT (SUBSTITUA PELA SUA URL REAL)
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_9z_0X_0X_0X_0X_0X_0X_0X_0X_0X_0X/exec"; 
+
       try {
         submitBtn.disabled = true;
-        submitBtn.innerText = "Enviando...";
+        submitBtn.innerText = "Enviando seus dados...";
+        statusMsg.style.color = "#C9A96E";
+        statusMsg.innerText = "Processando sua solicitação...";
+
+        // Envio para Google Sheets via Apps Script
         await fetch(SCRIPT_URL, {
           method: "POST",
-          mode: "no-cors",
+          mode: "no-cors", // Necessário para Google Apps Script
+          cache: "no-cache",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData)
         });
-        const waMsg = encodeURIComponent(`Olá! Sou ${formData.nome} e quero agendar ${formData.servico}.`);
-        window.location.href = `https://wa.me/5531992555714?text=${waMsg}`;
+
+        // Sucesso
+        statusMsg.style.color = "#25D366";
+        statusMsg.innerText = "Perfeito! Redirecionando para o WhatsApp...";
+        
+        // Redirecionamento Automático
+        const waMsg = encodeURIComponent(`Olá! Sou ${formData.nome} e quero agendar ${formData.servico}. Você tem horário disponível hoje ou amanhã?`);
+        const waUrl = `https://wa.me/5531992555714?text=${waMsg}`;
+        
+        setTimeout(() => {
+          window.location.href = waUrl;
+        }, 1500);
+
       } catch (error) {
+        console.error("Erro:", error);
+        statusMsg.style.color = "#e63946";
+        statusMsg.innerText = "Ocorreu um erro técnico. Por favor, use o botão flutuante do WhatsApp para agendar diretamente.";
         submitBtn.disabled = false;
         submitBtn.innerText = "TENTAR NOVAMENTE";
       }
