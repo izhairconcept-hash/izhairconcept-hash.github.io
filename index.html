@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google tag (gtag.js) - GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6E4X0X0X0"></script>
+  <script src="https://unpkg.com/lucide@latest"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6E4X0X0X0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -26,7 +25,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO PRIMARY -->
   <title>Salão de Beleza em Funcionários BH | IZ Hair Concept – Coloração & Tricologia</title>
   <meta name="description" content="Salão premium no bairro Funcionários, Belo Horizonte. Especialista em coloração, tricologia, unhas de gel e maquiagem. Agende pelo WhatsApp. Izabella Miranda, cabeleireira e tricologista." />
   <meta name="keywords" content="salão de beleza BH, coloração cabelo Belo Horizonte, tricologia BH, unhas de gel BH, salão Funcionários BH, cabeleireira BH, mechas BH, loiro BH, Izabella Miranda" />
@@ -34,7 +32,6 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://izhairconcept.com.br/" />
 
-  <!-- OPEN GRAPH (WhatsApp, redes sociais) -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://izhairconcept.com.br/" />
   <meta property="og:title" content="IZ Hair Concept – Salão Premium em BH | Izabella Miranda" />
@@ -43,13 +40,11 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="IZ Hair Concept" />
 
-  <!-- TWITTER CARD -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="IZ Hair Concept – Salão Premium em BH" />
   <meta name="twitter:description" content="Especialista em coloração, tricologia e transformações capilares em Belo Horizonte." />
   <meta name="twitter:image" content="https://izhairconcept.com.br/images/og-image.jpg" />
 
-  <!-- SCHEMA MARKUP: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -90,25 +85,24 @@
   }
   </script>
 
-  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
-       DESIGN SYSTEM — IZ Hair Concept
+        DESIGN SYSTEM — IZ Hair Concept
     ============================================================ */
     :root {
-      --gold:       #C9A96E;
+      --gold:        #C9A96E;
       --gold-light: #E8D5B0;
       --gold-dark:  #A07840;
       --cream:      #FAF7F2;
       --warm-white: #F5F0E8;
       --charcoal:   #1A1714;
-      --mid:        #3D3530;
+      --mid:         #3D3530;
       --muted:      #8A7D72;
-      --border:     rgba(201,169,110,0.25);
+      --border:      rgba(201,169,110,0.25);
       --ff-display: 'Cormorant Garamond', Georgia, serif;
       --ff-body:    'Jost', sans-serif;
     }
@@ -138,7 +132,7 @@
     .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
 
     /* ============================================================
-       HEADER / NAV
+        HEADER / NAV
     ============================================================ */
     header {
       position: fixed;
@@ -234,7 +228,7 @@
     .mobile-menu.open { display: flex; }
 
     /* ============================================================
-       HERO
+        HERO
     ============================================================ */
     #hero {
       min-height: 100vh;
@@ -366,7 +360,7 @@
     }
 
     /* ============================================================
-       SECTIONS COMMON
+        SECTIONS COMMON
     ============================================================ */
     section { padding: 120px 0; }
     .section-eyebrow {
@@ -388,7 +382,7 @@
     h2 em { font-style: italic; color: var(--gold); }
 
     /* ============================================================
-       SOBRE
+        SOBRE
     ============================================================ */
     .sobre-grid {
       display: grid;
@@ -448,7 +442,7 @@
     }
 
     /* ============================================================
-       SERVIÇOS
+        SERVIÇOS
     ============================================================ */
     #servicos { background: var(--warm-white); }
     .servicos-header {
@@ -480,7 +474,7 @@
       margin-bottom: 30px;
       opacity: 0.6;
     }
-    .servico-icon { font-size: 1.5rem; margin-bottom: 20px; display: block; }
+    .servico-icon { font-size: 1.5rem; margin-bottom: 20px; display: flex; color: var(--gold); }
     .servico-name {
       font-family: var(--ff-display);
       font-size: 1.6rem;
@@ -498,7 +492,7 @@
     }
 
     /* ============================================================
-       TRICOLOGIA
+        TRICOLOGIA
     ============================================================ */
     .trico-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 100px; align-items: center; }
     .trico-list { list-style: none; margin-top: 40px; }
@@ -535,7 +529,7 @@
     }
 
     /* ============================================================
-       GALERIA
+        GALERIA
     ============================================================ */
     .galeria-header { text-align: center; margin-bottom: 80px; }
     .galeria-grid {
@@ -576,7 +570,7 @@
     .galeria-cta { text-align: center; margin-top: 60px; }
 
     /* ============================================================
-       DEPOIMENTOS
+        DEPOIMENTOS
     ============================================================ */
     #depoimentos { background: var(--warm-white); }
     .depo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -592,7 +586,7 @@
     .depo-author strong { display: block; color: var(--charcoal); margin-bottom: 4px; letter-spacing: 0.05em; }
 
     /* ============================================================
-       NOVA SEÇÃO: LEAD CAPTURE (MESCLADA)
+        NOVA SEÇÃO: LEAD CAPTURE (MESCLADA)
     ============================================================ */
     .lead-section { background: var(--warm-white); padding: 100px 0; }
     .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -616,7 +610,7 @@
     #form-status { margin-top: 20px; font-size: 0.85rem; text-align: center; }
 
     /* ============================================================
-       AGENDAR / CTA ORIGINAL
+        AGENDAR / CTA ORIGINAL
     ============================================================ */
     .agendar-content { background: var(--charcoal); color: var(--warm-white); padding: 100px 80px; text-align: center; position: relative; }
     .agendar-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--gold); margin-bottom: 30px; }
@@ -650,7 +644,7 @@
     .info-value { font-size: 0.9rem; line-height: 1.6; }
 
     /* ============================================================
-       FOOTER
+        FOOTER
     ============================================================ */
     footer { background: var(--charcoal); color: var(--warm-white); padding: 100px 0 40px; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; margin-bottom: 80px; }
@@ -739,7 +733,6 @@
   </header>
 
   <main>
-    <!-- HERO -->
     <section id="hero">
       <div class="hero-bg"></div>
       <div class="hero-line"></div>
@@ -758,7 +751,6 @@
       </div>
     </section>
 
-    <!-- SOBRE -->
     <section id="sobre">
       <div class="container">
         <div class="sobre-grid">
@@ -784,7 +776,6 @@
       </div>
     </section>
 
-    <!-- SERVIÇOS -->
     <section id="servicos">
       <div class="container">
         <div class="servicos-header">
@@ -796,37 +787,37 @@
         </div>
         <div class="servicos-grid">
           <article class="servico-card reveal">
-            <div class="servico-num">01</div><span class="servico-icon" aria-hidden="true">🎨</span>
+            <div class="servico-num">01</div><span class="servico-icon" aria-hidden="true"><i data-lucide="palette"></i></span>
             <h3 class="servico-name">Coloração Artística</h3>
             <p class="servico-desc">Mechas, luzes, balayage, ombré hair e coloração global com análise individualizada do tom e das necessidades do fio. Resultados naturais e vibrantes.</p>
             <span class="servico-tag">Especialidade</span>
           </article>
           <article class="servico-card reveal reveal-delay-1">
-            <div class="servico-num">02</div><span class="servico-icon" aria-hidden="true">🔬</span>
+            <div class="servico-num">02</div><span class="servico-icon" aria-hidden="true"><i data-lucide="microscope"></i></span>
             <h3 class="servico-name">Tricologia</h3>
             <p class="servico-desc">Diagnóstico capilar e do couro cabeludo, mapeamento de queda, tratamentos específicos para ressecamento, oleosidade e fragilidade dos fios.</p>
             <span class="servico-tag">Especialidade</span>
           </article>
           <article class="servico-card reveal reveal-delay-2">
-            <div class="servico-num">03</div><span class="servico-icon" aria-hidden="true">💅</span>
+            <div class="servico-num">03</div><span class="servico-icon" aria-hidden="true"><i data-lucide="sparkles"></i></span>
             <h3 class="servico-name">Unhas de Gel</h3>
             <p class="servico-desc">Aplicação e manutenção de unhas de gel com design personalizado, durabilidade e acabamento impecável para valorizar seu visual completo.</p>
             <span class="servico-tag">Disponível</span>
           </article>
           <article class="servico-card reveal reveal-delay-1">
-            <div class="servico-num">04</div><span class="servico-icon" aria-hidden="true">✨</span>
+            <div class="servico-num">04</div><span class="servico-icon" aria-hidden="true"><i data-lucide="wand-2"></i></span>
             <h3 class="servico-name">Maquiagem</h3>
             <p class="servico-desc">Maquiagem profissional para eventos, ensaios, noivas e dia a dia. Técnica precisa para realçar seus traços com leveza e sofisticação.</p>
             <span class="servico-tag">Disponível</span>
           </article>
           <article class="servico-card reveal reveal-delay-2">
-            <div class="servico-num">05</div><span class="servico-icon" aria-hidden="true">💆</span>
+            <div class="servico-num">05</div><span class="servico-icon" aria-hidden="true"><i data-lucide="droplets"></i></span>
             <h3 class="servico-name">Tratamentos Capilares</h3>
             <p class="servico-desc">Hidratação profunda, reconstrução, nutrição e cronograma capilar personalizado de acordo com o diagnóstico dos seus fios.</p>
             <span class="servico-tag">Disponível</span>
           </article>
           <article class="servico-card reveal reveal-delay-3">
-            <div class="servico-num">06</div><span class="servico-icon" aria-hidden="true">✂️</span>
+            <div class="servico-num">06</div><span class="servico-icon" aria-hidden="true"><i data-lucide="scissors"></i></span>
             <h3 class="servico-name">Corte & Finalização</h3>
             <p class="servico-desc">Corte feminino personalizado respeitando o formato do rosto e o estilo de vida de cada cliente, com finalização que valoriza o movimento natural.</p>
             <span class="servico-tag">Disponível</span>
@@ -835,7 +826,6 @@
       </div>
     </section>
 
-    <!-- TRICOLOGIA — Destaque SEO -->
     <section id="tricologia">
       <div class="container">
         <div class="trico-grid">
@@ -864,7 +854,6 @@
       </div>
     </section>
 
-    <!-- CAPTURA DE LEADS (NOVA SEÇÃO) -->
     <section id="agendar" class="lead-section">
       <div class="container">
         <div class="lead-grid">
@@ -911,7 +900,6 @@
       </div>
     </section>
 
-    <!-- GALERIA -->
     <section id="galeria">
       <div class="container">
         <div class="galeria-header reveal">
@@ -924,36 +912,31 @@
 
           <div class="galeria-item reveal" role="listitem">
             <div class="placeholder-img" data-label="Coloração">
-              <!-- <img src="images/galeria-1.jpg" alt="Coloração loiro platinado - IZ Hair Concept BH" /> -->
-            </div>
+              </div>
             <div class="galeria-overlay"><span>Loiro Platinado</span></div>
           </div>
 
           <div class="galeria-item reveal reveal-delay-1" role="listitem">
             <div class="placeholder-img" data-label="Mechas">
-              <!-- <img src="images/galeria-2.jpg" alt="Mechas e luzes naturais - IZ Hair Concept BH" /> -->
-            </div>
+              </div>
             <div class="galeria-overlay"><span>Mechas Naturais</span></div>
           </div>
 
           <div class="galeria-item reveal reveal-delay-2" role="listitem">
             <div class="placeholder-img" data-label="Balayage">
-              <!-- <img src="images/galeria-3.jpg" alt="Balayage caramelo - IZ Hair Concept BH" /> -->
-            </div>
+              </div>
             <div class="galeria-overlay"><span>Balayage Caramelo</span></div>
           </div>
 
           <div class="galeria-item reveal reveal-delay-1" role="listitem">
             <div class="placeholder-img" data-label="Ombré">
-              <!-- <img src="images/galeria-4.jpg" alt="Ombré hair - IZ Hair Concept BH" /> -->
-            </div>
+              </div>
             <div class="galeria-overlay"><span>Ombré Hair</span></div>
           </div>
 
           <div class="galeria-item reveal reveal-delay-2" role="listitem">
             <div class="placeholder-img" data-label="Cor">
-              <!-- <img src="images/galeria-5.jpg" alt="Coloração fantasia - IZ Hair Concept BH" /> -->
-            </div>
+              </div>
             <div class="galeria-overlay"><span>Cor Fantasia</span></div>
           </div>
 
@@ -967,7 +950,6 @@
       </div>
     </section>
 
-    <!-- DEPOIMENTOS -->
     <section id="depoimentos">
       <div class="container">
         <p class="section-eyebrow reveal">O que dizem nossas clientes</p>
@@ -1012,9 +994,6 @@
 
   </main>
 
-  <!-- ═══════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════ -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -1064,13 +1043,15 @@
     </div>
   </footer>
 
-  <!-- WhatsApp flutuante -->
   <a href="https://wa.me/5531992555714?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20agora." class="wa-float" target="_blank" rel="noopener" aria-label="Fale com especialista agora">
     <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     <span>Falar com especialista agora</span>
   </a>
 
   <script>
+    // Ativação dos ícones Lucide
+    lucide.createIcons();
+
     // ── Header scroll ──
     const header = document.getElementById("site-header");
     window.addEventListener("scroll", () => {
