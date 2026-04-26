@@ -13,8 +13,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Salão de Beleza em Funcionários BH | IZ Hair Concept – Coloração & Tricologia</title>
-  <meta name="description" content="Salão premium no bairro Funcionários, Belo Horizonte. Especialista em coloração, tricologia e transformações capilares com Izabella Miranda." />
+  <title>IZ Hair Concept | Mechas, Tricologia e Estética em Funcionários BH</title>
+  <meta name="description" content="Salão premium no bairro Funcionários, Belo Horizonte. Especialista em coloração, saúde capilar e visagismo com Izabella Miranda." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,45 +37,57 @@
     .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
     /* HEADER */
-    header { position: fixed; top: 0; width: 100%; z-index: 100; padding: 20px 0; background: rgba(250,247,242,0.9); backdrop-filter: blur(10px); }
+    header { position: fixed; top: 0; width: 100%; z-index: 100; padding: 20px 0; background: rgba(250,247,242,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(201,169,110,0.1); }
     nav { display: flex; justify-content: space-between; align-items: center; }
     .logo { text-decoration: none; display: flex; flex-direction: column; }
-    .logo-iz { font-family: var(--ff-display); font-size: 2rem; color: var(--gold); letter-spacing: 0.1em; }
-    .logo-sub { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--muted); }
-    .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 30px; }
-    .nav-cta { background: var(--gold); color: white !important; padding: 10px 20px; border-radius: 2px; }
+    .logo-iz { font-family: var(--ff-display); font-size: 2.2rem; color: var(--gold); letter-spacing: 0.1em; font-weight: 300; }
+    .logo-sub { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.35em; color: var(--muted); margin-top: -5px; }
+    .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; margin-left: 35px; transition: 0.3s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold); color: white !important; padding: 12px 25px; border-radius: 2px; font-weight: 500; }
 
     /* HERO */
     #hero { height: 100vh; display: flex; align-items: center; background: var(--charcoal); color: white; position: relative; overflow: hidden; }
-    .hero-content { z-index: 2; max-width: 600px; }
-    h1 { font-family: var(--ff-display); font-size: clamp(3rem, 8vw, 5rem); line-height: 1.1; margin-bottom: 20px; }
+    #hero::before { content: ''; position: absolute; inset: 0; background: url('images/IMG_2642.JPG') center/cover no-repeat; opacity: 0.3; filter: grayscale(30%); }
+    .hero-content { z-index: 2; max-width: 700px; }
+    h1 { font-family: var(--ff-display); font-size: clamp(3.5rem, 8vw, 5.5rem); line-height: 1; margin-bottom: 25px; font-weight: 300; }
     h1 em { color: var(--gold); font-style: italic; }
-    .btn-primary { display: inline-block; background: var(--gold); color: white; padding: 18px 40px; text-decoration: none; letter-spacing: 0.2em; font-size: 0.8rem; transition: 0.3s; }
-    .btn-primary:hover { background: var(--gold-dark); }
+    .btn-primary { display: inline-block; background: var(--gold); color: white; padding: 20px 45px; text-decoration: none; letter-spacing: 0.25em; font-size: 0.8rem; transition: 0.3s; font-weight: 500; }
+    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-3px); }
 
     /* SERVICES */
-    section { padding: 100px 0; }
-    .section-eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.7rem; margin-bottom: 10px; display: block; }
-    h2 { font-family: var(--ff-display); font-size: 3rem; margin-bottom: 50px; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .service-card { background: white; padding: 40px; transition: 0.4s; border-bottom: 3px solid transparent; }
-    .service-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-    .service-icon { color: var(--gold); margin-bottom: 20px; }
+    section { padding: 120px 0; }
+    .section-eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: 0.4em; font-size: 0.7rem; margin-bottom: 15px; display: block; font-weight: 500; }
+    h2 { font-family: var(--ff-display); font-size: 3.5rem; margin-bottom: 60px; font-weight: 300; line-height: 1.1; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+    .service-card { background: white; padding: 50px 40px; transition: 0.5s; border-bottom: 4px solid transparent; }
+    .service-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+    .service-icon { color: var(--gold); margin-bottom: 25px; }
+    .service-card h3 { font-family: var(--ff-display); font-size: 1.8rem; margin-bottom: 15px; font-weight: 400; }
 
-    /* GALERIA - AJUSTADA COM SUAS FOTOS REAIS */
-    .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-    .galeria-item { height: 400px; overflow: hidden; position: relative; }
-    .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+    /* SOBRE - COM SUA FOTO DE AUTORIDADE */
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .sobre-img { height: 600px; overflow: hidden; border: 1px solid var(--gold); padding: 15px; background: white; }
+    .sobre-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* GALERIA */
+    .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .galeria-item { height: 450px; overflow: hidden; position: relative; cursor: pointer; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
     .galeria-item:hover img { transform: scale(1.1); }
-    .galeria-label { position: absolute; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.5); padding: 5px 15px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; }
+    .galeria-overlay { position: absolute; inset: 0; background: rgba(26,23,20,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; }
+    .galeria-item:hover .galeria-overlay { opacity: 1; }
+    .galeria-overlay span { color: white; border: 1px solid white; padding: 12px 25px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; }
 
-    /* REVEAL ANIMATION */
-    .reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s all cubic-bezier(0.165, 0.84, 0.44, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
+      .sobre-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      h2 { font-size: 2.2rem; }
+      h2 { font-size: 2.8rem; }
+      #hero { text-align: center; }
     }
   </style>
 </head>
@@ -90,9 +102,9 @@
         </a>
         <div class="nav-links">
           <a href="#servicos">Serviços</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#galeria">Galeria</a>
-          <a href="https://wa.me/5531992555714" class="nav-cta">Agendar Experiência</a>
+          <a href="#sobre">A Especialista</a>
+          <a href="#galeria">Portfolio</a>
+          <a href="https://wa.me/5531992555714" class="nav-cta">Agendar Agora</a>
         </div>
       </nav>
     </div>
@@ -102,80 +114,110 @@
     <section id="hero">
       <div class="container">
         <div class="hero-content reveal">
-          <p class="section-eyebrow" style="color: var(--gold);">Funcionários · Belo Horizonte</p>
+          <span class="section-eyebrow" style="color: var(--gold);">Funcionários · Belo Horizonte</span>
           <h1>A arte da <em>cor</em> e o cuidado da <em>ciência</em>.</h1>
-          <p style="margin-bottom: 40px; color: rgba(255,255,255,0.7);">Especialista em mechas, tricologia e transformações que preservam a integridade do seu fio.</p>
-          <a href="https://wa.me/5531992555714" class="btn-primary">RESERVAR HORÁRIO</a>
+          <p style="margin-bottom: 45px; color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 500px;">Mechas autorais, tricologia avançada e visagismo. Onde a saúde capilar é o fundamento da sua transformação.</p>
+          <a href="https://wa.me/5531992555714" class="btn-primary">SOLICITAR CONSULTORIA</a>
         </div>
       </div>
     </section>
 
     <section id="servicos">
       <div class="container">
-        <span class="section-eyebrow">Curadoria de Serviços</span>
-        <h2>Experiências <em>Premium</em></h2>
+        <span class="section-eyebrow">Experiência IZ Concept</span>
+        <h2>Curadoria em <em>Saúde e Estética</em></h2>
         <div class="services-grid">
           <div class="service-card reveal">
-            <div class="service-icon"><i data-lucide="palette" size="32"></i></div>
+            <div class="service-icon"><i data-lucide="palette" size="35"></i></div>
             <h3>Coloração Artística</h3>
-            <p>Loiros e morenas iluminadas com técnicas de baixo impacto e alta sofisticação.</p>
+            <p>Loiros e morenas iluminadas criados com técnicas que preservam a integridade da fibra.</p>
           </div>
           <div class="service-card reveal">
-            <div class="service-icon"><i data-lucide="microscope" size="32"></i></div>
-            <h3>Tricologia</h3>
-            <p>Diagnóstico e tratamento avançado da saúde capilar e do couro cabeludo.</p>
+            <div class="service-icon"><i data-lucide="microscope" size="35"></i></div>
+            <h3>Tricologia Clínica</h3>
+            <p>Tratamento especializado para queda, oleosidade e recuperação intensiva dos fios.</p>
           </div>
           <div class="service-card reveal">
-            <div class="service-icon"><i data-lucide="scissors" size="32"></i></div>
+            <div class="service-icon"><i data-lucide="scissors" size="35"></i></div>
             <h3>Corte Visagista</h3>
-            <p>Design de imagem personalizado para realçar sua melhor versão.</p>
+            <p>Design de imagem estratégico baseado na sua personalidade e traços faciais.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="galeria" style="background: white;">
+    <section id="sobre" style="background: white;">
+      <div class="container">
+        <div class="sobre-grid">
+          <div class="sobre-img reveal">
+            <img src="images/IMG_7332.JPG" alt="Izabella Miranda especialista em cabelos e tricologia BH">
+          </div>
+          <div class="sobre-content reveal">
+            <span class="section-eyebrow">A Mente Criativa</span>
+            <h2>Izabella <em>Miranda</em></h2>
+            <p style="font-size: 1.2rem; margin-bottom: 25px; color: var(--gold-dark);">“Antes de transformar, eu escuto. Antes de colorir, eu cuido.”</p>
+            <p style="margin-bottom: 30px; color: var(--muted);">Com mais de 7 anos de expertise no mercado premium de Belo Horizonte, uni a precisão da tricologia ao olhar artístico da colorimetria. No IZ Hair Concept, cada atendimento é uma jornada única de cuidado técnico e sofisticação.</p>
+            <div style="padding-top: 30px; border-top: 1px solid var(--cream);">
+              <p style="font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem;">Especialidades:</p>
+              <p style="color: var(--muted); font-size: 0.9rem; margin-top: 5px;">Mechas Signature • Terapia Capilar • Visagismo • Estética Premium</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
       <div class="container">
         <span class="section-eyebrow">Nosso Portfolio</span>
-        <h2>Resultados <em>Reais</em></h2>
-        
+        <h2>Identidades <em>Reveladas</em></h2>
         <div class="galeria-grid">
           <div class="galeria-item reveal">
-            <img src="images/IMG_2642.JPG" alt="Loiro Premium IZ Hair">
-            <div class="galeria-label">Loiro Signature</div>
-          </div>
-          <div class="galeria-item reveal">
             <img src="images/IMG_2852.JPG" alt="Morena Iluminada BH">
-            <div class="galeria-label">Iluminados</div>
+            <div class="galeria-overlay"><span>Morena Iluminada</span></div>
           </div>
           <div class="galeria-item reveal">
-            <img src="images/IMG_3938.JPG" alt="Maquiagem Social">
-            <div class="galeria-label">Beauty & Glow</div>
+            <img src="images/IMG_5265.JPG" alt="Loiro Perfeito IZ Hair">
+            <div class="galeria-overlay"><span>Loiro Signature</span></div>
           </div>
           <div class="galeria-item reveal">
-            <img src="images/IMG_5656.JPG" alt="Ruivos de Luxo">
-            <div class="galeria-label">Color Art</div>
+            <img src="images/IMG_5656.JPG" alt="Corte e Cor Concept">
+            <div class="galeria-overlay"><span>Design & Cor</span></div>
           </div>
           <div class="galeria-item reveal">
-            <img src="images/IMG_4182.JPG" alt="Unhas de Gel">
-            <div class="galeria-label">Nail Design</div>
+            <img src="images/IMG_3938.JPG" alt="Maquiagem Premium BH">
+            <div class="galeria-overlay"><span>Beleza & Glow</span></div>
           </div>
           <div class="galeria-item reveal">
-            <img src="images/IMG_5265.JPG" alt="Saúde Capilar">
-            <div class="galeria-label">Tricologia</div>
+            <img src="images/IMG_4182.JPG" alt="Nail Design Gel">
+            <div class="galeria-overlay"><span>Unhas de Gel</span></div>
+          </div>
+          <div class="galeria-item reveal">
+            <img src="images/IMG_4183.JPG" alt="Estética de Luxo">
+            <div class="galeria-overlay"><span>Nail Art</span></div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer style="background: var(--charcoal); color: white; padding: 60px 0; text-align: center;">
+  <footer style="background: var(--charcoal); color: white; padding: 100px 0 50px;">
     <div class="container">
-      <p style="letter-spacing: 0.3em; font-size: 0.8rem; color: var(--gold); margin-bottom: 20px;">IZ HAIR CONCEPT</p>
-      <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5);">Rua Piauí, 1285 · Funcionários · Belo Horizonte</p>
-      <div style="margin-top: 30px;">
-        <a href="https://wa.me/5531992555714" style="color: white; text-decoration: none; margin: 0 15px;">WhatsApp</a>
-        <a href="https://www.instagram.com/izabellamirandabeauty/" style="color: white; text-decoration: none; margin: 0 15px;">Instagram</a>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 50px; margin-bottom: 80px;">
+        <div>
+          <span class="logo-iz" style="color: white;">IZ</span>
+          <p style="color: rgba(255,255,255,0.5); max-width: 300px; margin-top: 20px; font-size: 0.9rem;">Referência em saúde capilar e estética premium no bairro Funcionários, Belo Horizonte.</p>
+        </div>
+        <div>
+          <p style="color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 20px;">Localização</p>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Rua Piauí, 1285 • Funcionários<br>Belo Horizonte - MG</p>
+        </div>
+        <div>
+          <p style="color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 20px;">Contato</p>
+          <a href="https://wa.me/5531992555714" style="color: white; text-decoration: none; font-size: 1.1rem;">(31) 99255-5714</a>
+        </div>
+      </div>
+      <div style="text-align: center; padding-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); font-size: 0.75rem;">
+        <p>© 2024 IZ Hair Concept by Izabella Miranda. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
@@ -183,7 +225,6 @@
   <script>
     lucide.createIcons();
 
-    // Scroll Reveal Effect
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
