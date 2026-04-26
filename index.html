@@ -717,9 +717,43 @@
       .depo-grid { grid-template-columns: 1fr; }
       .agendar-info { grid-template-columns: 1fr; gap: 30px; }
     }
+
+    /* ============================================================
+        LIGHTBOX MODAL CSS (ADICIONADO)
+    ============================================================ */
+    #image-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      cursor: zoom-out;
+      justify-content: center;
+      align-items: center;
+    }
+    #image-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      border: 1px solid rgba(201,169,110,0.2);
+    }
+    #close-modal {
+      position: absolute;
+      top: 30px; right: 40px;
+      color: var(--gold);
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
+
+  <div id="image-modal" onclick="closeImage()">
+    <span id="close-modal">&times;</span>
+    <img id="modal-img" src="" alt="Imagem ampliada">
+  </div>
 
   <header id="site-header">
     <div class="container">
@@ -776,7 +810,7 @@
       <div class="container">
         <div class="sobre-grid">
           <div class="sobre-img-wrap reveal">
-            <div class="sobre-img-placeholder">
+            <div class="sobre-img-placeholder" style="cursor: pointer;" onclick="openImage('images/izabella-miranda-especialista.JPG')">
               <img src="images/izabella-miranda-especialista.JPG" alt="Izabella Miranda, cabeleireira e tricologista em BH" onerror="this.style.display='none'; this.parentNode.classList.add('placeholder-active');">
             </div>
             <div class="sobre-frame"></div>
@@ -931,35 +965,35 @@
 
         <div class="galeria-grid" role="list" aria-label="Galeria de transformações capilares">
 
-          <div class="galeria-item reveal" role="listitem">
+          <div class="galeria-item reveal" role="listitem" onclick="openImage('images/loiro-premium-funcionarios.JPG')">
             <div class="placeholder-img" data-label="Coloração">
               <img src="images/loiro-premium-funcionarios.JPG" alt="Loiro Signature Premium BH">
             </div>
             <div class="galeria-overlay"><span>Loiro Iluminado</span></div>
           </div>
 
-          <div class="galeria-item reveal reveal-delay-1" role="listitem">
+          <div class="galeria-item reveal reveal-delay-1" role="listitem" onclick="openImage('images/mechas-loiras-saudaveis.JPG')">
             <div class="placeholder-img" data-label="Mechas">
               <img src="images/mechas-loiras-saudaveis.JPG" alt="Mechas Loiras Saudáveis e Brilhantes">
             </div>
             <div class="galeria-overlay"><span>Loiros</span></div>
           </div>
 
-          <div class="galeria-item reveal reveal-delay-2" role="listitem">
+          <div class="galeria-item reveal reveal-delay-2" role="listitem" onclick="openImage('images/morena-iluminada-bh.JPG')">
             <div class="placeholder-img" data-label="Balayage">
               <img src="images/morena-iluminada-bh.JPG" alt="Morena Iluminada BH Sofisticada">
             </div>
             <div class="galeria-overlay"><span>Morena Iluminada</span></div>
           </div>
 
-          <div class="galeria-item reveal reveal-delay-1" role="listitem">
+          <div class="galeria-item reveal reveal-delay-1" role="listitem" onclick="openImage('images/coloracao-ruivo-concept.JPG')">
             <div class="placeholder-img" data-label="Ombré">
               <img src="images/coloracao-ruivo-concept.JPG" alt="Ruivo Concept e Design de Cor">
             </div>
             <div class="galeria-overlay"><span>Ruivos</span></div>
           </div>
 
-          <div class="galeria-item reveal reveal-delay-2" role="listitem">
+          <div class="galeria-item reveal reveal-delay-2" role="listitem" onclick="openImage('images/maquiagem-social-premium.JPG')">
             <div class="placeholder-img" data-label="Cor">
               <img src="images/maquiagem-social-premium.JPG" alt="Maquiagem Social de Luxo BH">
             </div>
@@ -1170,6 +1204,20 @@
         submitBtn.innerText = "TENTAR NOVAMENTE";
       }
     });
+
+    // ============================================================
+    // LIGHTBOX MODAL JS (ADICIONADO NO FINAL)
+    // ============================================================
+    function openImage(src) {
+      document.getElementById('modal-img').src = src;
+      document.getElementById('image-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Trava o scroll do fundo
+    }
+
+    function closeImage() {
+      document.getElementById('image-modal').style.display = 'none';
+      document.body.style.overflow = 'auto'; // Devolve o scroll
+    }
   </script>
 </body>
 </html>
