@@ -536,7 +536,7 @@
     }
 
     /* ============================================================
-        GALERIA
+        GALERIA — AJUSTE RESPONSIVO
     ============================================================ */
     .galeria-header { text-align: center; margin-bottom: 80px; }
     .galeria-grid {
@@ -545,23 +545,15 @@
       grid-template-rows: repeat(2, 300px);
       gap: 20px;
     }
-    .galeria-item { position: relative; overflow: hidden; }
-    .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .placeholder-img {
-      width: 100%; height: 100%;
-      background: var(--warm-white);
-      display: flex; align-items: center; justify-content: center;
+    .galeria-item { position: relative; overflow: hidden; height: 100%; }
+    .galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
     }
-    .placeholder-img::after {
-      content: attr(data-label);
-      font-family: var(--ff-body);
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-    }
-    .galeria-item:hover .placeholder-img { transform: scale(1.05); }
+    .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .galeria-item:hover img { transform: scale(1.05); }
     .galeria-overlay {
       position: absolute; inset: 0;
       background: rgba(26,23,20,0.4);
@@ -691,12 +683,26 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+    /* ============================================================
+        RESPONSIVIDADE (MEDIA QUERIES)
+    ============================================================ */
     @media (max-width: 992px) {
       .sobre-grid, .trico-grid, .footer-grid, .lead-grid { grid-template-columns: 1fr; gap: 60px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .galeria-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-      .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 1; aspect-ratio: 16/9; }
+      
+      /* Ajuste da Galeria no Celular */
+      .galeria-grid { 
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto; 
+      }
+      .galeria-item { 
+        height: 350px; 
+        grid-column: span 1 !important; 
+        grid-row: span 1 !important; 
+      }
+      .galeria-item:nth-child(1) { aspect-ratio: auto; }
+
       .hero-content { margin-left: 0; text-align: center; padding-top: 160px; }
       .hero-actions { justify-content: center; }
       .hero-badge { display: none; }
@@ -912,7 +918,7 @@
         <div class="galeria-header reveal">
           <p class="section-eyebrow">Transformações</p>
           <h2 id="galeria-titulo">Resultados que <em>falam por si</em></h2>
-          <p style="font-size:0.85rem;color:var(--muted);margin-top:12px;">Cada foto é uma história de cuidado e transformação</p>
+          <p style="font-size:0.85rem;color:var(--muted);margin-top:12px;">Cada foto é uma história de cuidado e transformation</p>
         </div>
 
         <div class="galeria-grid" role="list" aria-label="Galeria de transformações capilares">
@@ -954,11 +960,11 @@
 
         </div>
 
-           <div class="galeria-cta reveal">
-             <a href="https://www.instagram.com/izabellamirandabeauty/" class="btn-outline" target="_blank" rel="noopener" style="border-color: var(--gold); color: var(--gold); font-weight: 500;">
-               Ver mais no Instagram →
-             </a>
-           </div>
+            <div class="galeria-cta reveal">
+              <a href="https://www.instagram.com/izabellamirandabeauty/" class="btn-outline" target="_blank" rel="noopener" style="border-color: var(--gold); color: var(--gold); font-weight: 500;">
+                Ver mais no Instagram →
+              </a>
+            </div>
       </div>
     </section>
 
