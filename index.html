@@ -25,18 +25,17 @@
     .logo-iz { font-family: var(--ff-display); font-size: 2.2rem; color: var(--gold); letter-spacing: 0.1em; text-decoration: none; }
     .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; margin-left: 30px; }
     #hero { height: 100vh; display: flex; align-items: center; background: var(--charcoal); color: white; position: relative; overflow: hidden; }
-    /* Ajuste do fundo do Hero com o nome exato do arquivo no seu GitHub */
-    #hero::before { content: ''; position: absolute; inset: 0; background: url('IMG_2642.JPG') center/cover no-repeat; opacity: 0.4; }
+    #hero::before { content: ''; position: absolute; inset: 0; background: url('images/IMG_2642.JPG') center/cover no-repeat; opacity: 0.4; }
     .hero-content { z-index: 2; position: relative; max-width: 700px; }
     h1 { font-family: var(--ff-display); font-size: clamp(3.5rem, 8vw, 5.5rem); line-height: 1; margin-bottom: 25px; }
     .btn-primary { display: inline-block; background: var(--gold); color: white; padding: 20px 45px; text-decoration: none; letter-spacing: 0.2em; font-size: 0.8rem; font-weight: 500; }
     section { padding: 100px 0; }
     .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .sobre-img { height: 500px; border: 1px solid var(--gold); padding: 10px; background: white; }
+    .sobre-img { height: 550px; border: 1px solid var(--gold); padding: 10px; background: white; }
     .sobre-img img { width: 100%; height: 100%; object-fit: cover; }
     .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .galeria-item { height: 400px; overflow: hidden; position: relative; background: #eee; }
-    .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .galeria-item { height: 450px; overflow: hidden; position: relative; background: #eee; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
     .galeria-item:hover img { transform: scale(1.05); }
     .reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -50,7 +49,7 @@
         <a href="/" class="logo-iz">IZ HAIR</a>
         <div class="nav-links">
           <a href="#servicos">Serviços</a>
-          <a href="#sobre">Sobre</a>
+          <a href="#sobre">A Especialista</a>
           <a href="#galeria">Portfolio</a>
           <a href="https://wa.me/5531992555714" style="color: var(--gold); font-weight: bold;">Agendar</a>
         </div>
@@ -62,9 +61,9 @@
     <section id="hero">
       <div class="container">
         <div class="hero-content reveal">
-          <span style="color: var(--gold); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.8rem;">Belo Horizonte</span>
+          <span style="color: var(--gold); text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.8rem;">Bairro Funcionários · BH</span>
           <h1>A arte da cor e o cuidado da ciência.</h1>
-          <a href="https://wa.me/5531992555714" class="btn-primary">AGENDAR AGORA</a>
+          <a href="https://wa.me/5531992555714" class="btn-primary">RESERVAR EXPERIÊNCIA</a>
         </div>
       </div>
     </section>
@@ -73,11 +72,12 @@
       <div class="container">
         <div class="sobre-grid">
           <div class="sobre-img reveal">
-            <img src="IMG_7332.JPG" alt="Izabella Miranda">
+            <img src="images/IMG_7332.JPG" alt="Izabella Miranda - Especialista">
           </div>
           <div class="sobre-content reveal">
-            <h2 style="font-family: var(--ff-display); font-size: 3rem; margin-bottom: 20px;">Izabella Miranda</h2>
-            <p style="color: var(--muted); font-size: 1.1rem;">Especialista em mechas e tricologia no bairro Funcionários. Unindo estética de luxo e saúde capilar em cada atendimento.</p>
+            <h2 style="font-family: var(--ff-display); font-size: 3.5rem; margin-bottom: 25px;">Izabella Miranda</h2>
+            <p style="color: var(--muted); font-size: 1.1rem; margin-bottom: 20px;">Especialista em Mechas e Tricologia Clínica. No IZ Hair Concept, unimos a estética de luxo ao diagnóstico profundo da saúde capilar.</p>
+            <p style="color: var(--muted);">Atendimento personalizado para quem não abre mão da sofisticação e do cuidado técnico.</p>
           </div>
         </div>
       </div>
@@ -85,25 +85,11 @@
 
     <section id="galeria">
       <div class="container">
-        <h2 style="font-family: var(--ff-display); font-size: 3rem; margin-bottom: 50px; text-align: center;">Nosso Portfolio</h2>
+        <h2 style="font-family: var(--ff-display); font-size: 3rem; margin-bottom: 50px; text-align: center;">Identidades <em>Reveladas</em></h2>
         <div class="galeria-grid">
-          <div class="galeria-item reveal"><img src="IMG_2642.JPG" alt="Loiro"></div>
-          <div class="galeria-item reveal"><img src="IMG_2852.JPG" alt="Iluminada"></div>
-          <div class="galeria-item reveal"><img src="IMG_5265.JPG" alt="Mechas"></div>
-          <div class="galeria-item reveal"><img src="IMG_5656.JPG" alt="Cor"></div>
-          <div class="galeria-item reveal"><img src="IMG_3938.JPG" alt="Make"></div>
-          <div class="galeria-item reveal"><img src="IMG_4182.jpg" alt="Unhas"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    lucide.createIcons();
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-</body>
-</html>
+          <div class="galeria-item reveal"><img src="images/IMG_2852.JPG" alt="Morena Iluminada"></div>
+          <div class="galeria-item reveal"><img src="images/IMG_5265.JPG" alt="Loiro Signature"></div>
+          <div class="galeria-item reveal"><img src="images/IMG_5656.JPG" alt="Design & Cor"></div>
+          <div class="galeria-item reveal"><img src="images/IMG_3938.JPG" alt="Beauty Glow"></div>
+          <div class="galeria-item reveal"><img src="images/IMG_4182.jpg" alt="Nail Design"></div>
+          <div class="galeria-item reveal"><img src
