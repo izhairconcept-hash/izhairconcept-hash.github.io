@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iz Hair Concept - Conecte-se</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --dark-bg: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .profile-area {
+            margin-bottom: 30px;
+        }
+
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-gold), #8e6d31);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border: 2px solid var(--primary-gold);
+        }
+
+        h1 {
+            font-size: 22px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 10px 0;
+            color: var(--primary-gold);
+        }
+
+        .tagline {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            background-color: #222;
+        }
+
+        .btn i {
+            color: var(--primary-gold);
+            font-size: 18px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-gold);
+            color: #000;
+            border: none;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn-primary i {
+            color: #000;
+            margin-right: 10px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 11px;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
+        /* Toast notification */
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: var(--primary-gold);
+            color: #000;
+            text-align: center;
+            border-radius: 50px;
+            padding: 10px;
+            position: fixed;
+            z-index: 1;
+            bottom: 30px;
+            font-weight: bold;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-area">
+            <div class="logo-placeholder">IZ</div>
+            <h1>Iz Hair Concept</h1>
+            <div class="tagline">Luxury Beauty Experience</div>
+        </div>
+
+        <a href="contato.vcf" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> SALVAR NA AGENDA
+        </a>
+
+        <a href="https://wa.me/5531992555714?text=Olá%20Izzy,%20gostaria%20de%20agendar%20um%20horário" class="btn">
+            <span><i class="fab fa-whatsapp"></i> Agendamento (Izzy AI)</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <a href="https://www.instagram.com/izabellamirandabeauty/" class="btn">
+            <span><i class="fab fa-instagram"></i> Nosso Instagram</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <a href="https://maps.app.goo.gl/seulink" class="btn">
+            <span><i class="fas fa-location-dot"></i> Como Chegar</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <a href="#" onclick="copyPix('31992555714')" class="btn">
+            <span><i class="fas fa-copy"></i> Copiar Chave PIX</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <a href="https://share.google/Fou1y2ey8HoMGn5jx" class="btn">
+            <span><i class="fas fa-star"></i> Avalie nossa Experiência</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <div class="footer">
+            IZHAIRCONCEPT.COM.BR
+        </div>
+    </div>
+
+    <div id="toast">Chave PIX copiada!</div>
+
+    <script>
+        function copyPix(chave) {
+            navigator.clipboard.writeText(chave);
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+
+</body>
+</html>
