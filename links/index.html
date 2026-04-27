@@ -80,6 +80,7 @@
             border-radius: 12px;
             font-weight: 500;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .btn:active {
@@ -112,9 +113,9 @@
             font-size: 11px;
             color: #444;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        /* Toast notification */
         #toast {
             visibility: hidden;
             min-width: 200px;
@@ -122,11 +123,12 @@
             color: #000;
             text-align: center;
             border-radius: 50px;
-            padding: 10px;
+            padding: 12px;
             position: fixed;
             z-index: 1;
             bottom: 30px;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         #toast.show {
@@ -144,51 +146,58 @@
         <div class="profile-area">
             <div class="logo-placeholder">IZ</div>
             <h1>Iz Hair Concept</h1>
-            <div class="tagline">Luxo Beleza Experiência</div>
+            <div class="tagline">Luxo • Beleza • Experiência</div>
         </div>
 
-        <a href="contato.vcf" class="btn btn-primary">target="_blank" rel="noopener noreferrer">
+        <a href="contato.vcf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-user-plus"></i> SALVAR NA AGENDA
         </a>
 
-        <a href="https://wa.me/5531992555714?text=Olá%20Izzy,%20gostaria%20de%20agendar%20um%20horário" class="btn">target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/5531992555714?text=Olá%20Izzy,%20gostaria%20de%20agendar%20um%20horário" class="btn" target="_blank" rel="noopener noreferrer">
             <span><i class="fab fa-whatsapp"></i> Agendamento (Izzy AI)</span>
             <i class="fas fa-chevron-right"></i>
         </a>
 
-        <a href="https://www.instagram.com/izabellamirandabeauty/" class="btn">target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/izabellamirandabeauty/" class="btn" target="_blank" rel="noopener noreferrer">
             <span><i class="fab fa-instagram"></i> Nosso Instagram</span>
             <i class="fas fa-chevron-right"></i>
         </a>
 
-        <a href="https://maps.app.goo.gl/u5T9fNBmUj1NkEFs8" class="btn">target="_blank" rel="noopener noreferrer">
+        <a href="https://www.google.com/maps/search/?api=1&query=Iz+Hair+Concept&query_place_id=ChIJdfcFBj2ZpgARpCJAiGMjte4" class="btn" target="_blank" rel="noopener noreferrer">
             <span><i class="fas fa-location-dot"></i> Como Chegar</span>
             <i class="fas fa-chevron-right"></i>
         </a>
 
-        <a href="#" onclick="copyPix('31992555714')" class="btn">target="_blank" rel="noopener noreferrer">
+        <div class="btn" onclick="copyText('31992555714', 'Chave PIX copiada!')">
             <span><i class="fas fa-copy"></i> Copiar Chave PIX</span>
             <i class="fas fa-chevron-right"></i>
-        </a>
+        </div>
 
-        <a href="https://search.google.com/local/writereview?placeid=ChIJdfcFBj2ZpgARpCJAiGMjte4, 5" class="btn"> target="_blank" rel="noopener noreferrer">
+        <div class="btn" onclick="copyText('SENHA_AQUI', 'Senha do Wi-Fi copiada!')">
+            <span><i class="fas fa-wifi"></i> Wi-Fi do Salão</span>
+            <i class="fas fa-chevron-right"></i>
+        </div>
+
+        <a href="https://search.google.com/local/writereview?placeid=ChIJdfcFBj2ZpgARpCJAiGMjte4,5" class="btn" target="_blank" rel="noopener noreferrer">
             <span><i class="fas fa-star"></i> Avalie nossa Experiência</span>
             <i class="fas fa-chevron-right"></i>
         </a>
 
         <div class="footer">
-            IZHAIRCONCEPT.COM.BR
+            izhairconcept.com.br
         </div>
     </div>
 
-    <div id="toast">Chave PIX copiada!</div>
+    <div id="toast">Copiado com sucesso!</div>
 
     <script>
-        function copyPix(chave) {
-            navigator.clipboard.writeText(chave);
-            var x = document.getElementById("toast");
-            x.className = "show";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        function copyText(texto, mensagem) {
+            navigator.clipboard.writeText(texto).then(() => {
+                var x = document.getElementById("toast");
+                x.innerHTML = mensagem;
+                x.className = "show";
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            });
         }
     </script>
 
