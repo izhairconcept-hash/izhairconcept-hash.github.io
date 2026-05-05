@@ -42,7 +42,6 @@
         #areaVip { display: none; margin-top: 30px; padding: 20px; border: 1px double #D4AF37; background: rgba(212, 175, 55, 0.05); animation: fadeIn 1s ease-in; }
         .info-label { color: #888; font-size: 10px; text-transform: uppercase; margin-bottom: 5px; }
         .info-value { color: #D4AF37; font-size: 18px; font-weight: 600; margin-bottom: 15px; letter-spacing: 1px; }
-        .btn-gold { background-color: #D4AF37; color: #000; border: none; }
         .btn-white { border-color: #ffffff; color: #ffffff; margin-top: 20px; }
         .qrcode-container { background: white; padding: 15px; display: inline-block; margin: 20px 0; border-radius: 8px; }
         #qrCodeImg { width: 150px; height: 150px; }
@@ -63,18 +62,17 @@
 
         <div id="areaVip">
             <div class="info-label">Rede:</div>
-            <div class="info-value">IZABELLA MIRANDA</div>
+            <div class="info-value">IZCONCEPT_CLIENTES</div>
             
             <div class="info-label">Senha:</div>
-            <div class="info-value" id="wifiSenha">E2C6D1D4</div>
+            <div class="info-value" id="wifiSenha">izbeauty25</div>
 
             <div class="qrcode-container">
-                <img id="qrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:IZABELLA%20MIRANDA;P:E2C6D1D4;;" alt="QR Code Wi-Fi">
+                <img id="qrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:T:WPA;S:IZCONCEPT_CLIENTES;P:izbeauty25;;" alt="QR Code Wi-Fi">
                 <div style="color: #000; font-size: 10px; margin-top: 5px; font-weight: bold;">APONTE A CÂMERA</div>
             </div>
 
             <button onclick="copiarSenha()" id="btnCopiar" class="btn">Copiar Senha</button>
-            <a href="WIFI:T:WPA;S:IZABELLA%20MIRANDA;P:E2C6D1D4;;" class="btn btn-gold">Conexão Automática</a>
             <a href="contato.vcf" class="btn btn-white">💾 Salvar Contato do Salão</a>
         </div>
         <footer>IZ HAIR CONCEPT &copy; 2026</footer>
