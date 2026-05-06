@@ -25,9 +25,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Salão de Beleza no Funcionários BH | IZ Hair Concept – Coloração & Tricologia</title>
-  <meta name="description" content="O melhor salão de beleza no bairro Funcionários, Belo Horizonte. Especialista em coloração, mechas e tricologia avançada com Izabella Miranda. Rua Piauí, 1285." />
-  <meta name="keywords" content="salão de beleza funcionários bh, tricologia bh funcionários, coloração cabelo bh, mechas loiras bh, izabella miranda bh, salão rua piauí bh" />
+  <title>Salão de Beleza no Funcionários BH | IZ Hair Concept – Coloração, Mechas & Tricologia</title>
+  <meta name="description" content="Salão premium no bairro Funcionários, Belo Horizonte. Especialista em coloração, tricologia, unhas de gel e maquiagem na Rua Piauí, 1285. Agende com Izabella Miranda." />
+  <meta name="keywords" content="salão de beleza funcionários bh, salão rua piauí bh, coloração cabelo bh, tricologia bh, mechas bh, loiro bh, Izabella Miranda" />
   <meta name="author" content="IZ Hair Concept by Izabella Miranda" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://izhairconcept.com.br/" />
@@ -35,7 +35,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://izhairconcept.com.br/" />
   <meta property="og:title" content="IZ Hair Concept – Salão Premium no Funcionários BH" />
-  <meta property="og:description" content="Expertise em coloração e saúde capilar no coração do bairro Funcionários, Belo Horizonte. Agende com Izabella Miranda." />
+  <meta property="og:description" content="Especialista em coloração, tricologia e transformações capilares no bairro Funcionários, Belo Horizonte." />
   <meta property="og:image" content="https://izhairconcept.com.br/images/logo-iz-hair.png" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="IZ Hair Concept" />
@@ -51,7 +51,7 @@
     "@type": "BeautySalon",
     "name": "IZ Hair Concept by Izabella Miranda",
     "image": "https://izhairconcept.com.br/images/og-image.jpg",
-    "description": "Salão de beleza premium especializado em coloração e tricologia no bairro Funcionários, Belo Horizonte.",
+    "description": "Salão de beleza premium especializado em coloração, tricologia, unhas de gel e maquiagem no bairro Funcionários, Belo Horizonte.",
     "url": "https://izhairconcept.com.br",
     "telephone": "+55-31-99255-5714",
     "address": {
@@ -75,6 +75,9 @@
         "closes": "19:00"
       }
     ],
+    "sameAs": [
+      "https://www.instagram.com/izabellamirandabeauty/"
+    ],
     "priceRange": "$$"
   }
   </script>
@@ -84,7 +87,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* TODO O SEU DESIGN SYSTEM ORIGINAL FOI PRESERVADO ABAIXO */
+    /* ============================================================
+        DESIGN SYSTEM — IZ Hair Concept (TODO SEU CSS ORIGINAL)
+    ============================================================ */
     :root {
       --gold:          #C9A96E;
       --gold-light: #E8D5B0;
@@ -151,11 +156,33 @@
     .sobre-img-placeholder { aspect-ratio: 4/5; background: var(--warm-white); overflow: hidden; position: relative; z-index: 2; }
     .sobre-frame { position: absolute; top: 30px; left: -30px; width: 100%; height: 100%; border: 1px solid var(--border); z-index: 1; }
     .sobre-text p { font-size: 1.05rem; line-height: 1.8; color: var(--mid); margin-bottom: 24px; }
+    .sobre-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .stat-num { font-family: var(--ff-display); font-size: 2rem; color: var(--gold); margin-bottom: 8px; }
+    .stat-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); }
 
     #servicos { background: var(--warm-white); }
     .servicos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .servico-card { background: var(--cream); padding: 60px 40px; transition: background 0.4s; }
+    .servico-card { background: var(--cream); padding: 60px 40px; transition: background 0.4s; position: relative; overflow: hidden; }
+    .servico-icon { font-size: 1.5rem; margin-bottom: 20px; display: flex; color: var(--gold); }
     .servico-name { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; margin-bottom: 20px; }
+    .servico-desc { font-size: 0.9rem; line-height: 1.7; color: var(--muted); margin-bottom: 30px; }
+
+    .trico-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 100px; align-items: center; }
+    .trico-list { list-style: none; margin-top: 40px; }
+    .trico-list li { font-size: 0.9rem; margin-bottom: 18px; padding-left: 30px; position: relative; color: var(--mid); }
+    .trico-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 15px; height: 1px; background: var(--gold); }
+    .trico-highlight { background: var(--charcoal); padding: 60px; color: var(--warm-white); position: relative; }
+
+    .galeria-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 300px); gap: 20px; }
+    .galeria-item { position: relative; overflow: hidden; }
+    .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .galeria-overlay { position: absolute; inset: 0; background: rgba(26,23,20,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s; }
+    .galeria-item:hover .galeria-overlay { opacity: 1; }
+
+    .depo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .depo-card { background: #fff; padding: 50px; position: relative; }
+    .depo-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 20px; letter-spacing: 2px; }
+    .depo-text { font-size: 0.95rem; line-height: 1.8; color: var(--mid); font-style: italic; margin-bottom: 30px; }
 
     .lead-section { background: var(--warm-white); padding: 100px 0; }
     .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -163,28 +190,36 @@
     .form-group { margin-bottom: 24px; }
     .form-group input, .form-group select { width: 100%; padding: 14px; border: 1px solid #eee; background: #fcfcfc; font-family: var(--ff-body); font-size: 0.9rem; }
     .btn-submit { width: 100%; background: var(--charcoal); color: var(--warm-white); border: none; padding: 18px; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-    .btn-submit:hover { background: var(--gold); color: var(--charcoal); }
 
-    .wa-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: #fff; padding: 15px 25px; border-radius: 50px; text-decoration: none; z-index: 999; display: flex; align-items: center; gap: 10px; font-weight: 500; box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
+    .wa-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: #fff; padding: 15px 25px; border-radius: 50px; text-decoration: none; z-index: 999; display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
 
     footer { background: var(--charcoal); color: var(--warm-white); padding: 100px 0 40px; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; }
+    .footer-social { display: flex; gap: 15px; }
+    .social-link { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--gold); transition: 0.3s; }
+    .social-link:hover { background: var(--gold); color: var(--charcoal); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    #image-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+    #image-modal img { max-width: 90%; max-height: 90%; }
 
     @media (max-width: 992px) {
-      .sobre-grid, .lead-grid, .footer-grid { grid-template-columns: 1fr; gap: 60px; }
+      .sobre-grid, .trico-grid, .footer-grid, .lead-grid { grid-template-columns: 1fr; gap: 60px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .galeria-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .galeria-item { height: 350px; grid-column: span 1 !important; grid-row: span 1 !important; }
       .hero-content { margin-left: 0; text-align: center; padding-top: 160px; }
+      .depo-grid { grid-template-columns: 1fr; }
     }
-
-    #image-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); cursor: zoom-out; justify-content: center; align-items: center; }
-    #image-modal img { max-width: 90%; max-height: 90%; }
   </style>
 </head>
 <body>
 
   <div id="image-modal" onclick="closeImage()">
-    <span id="close-modal" style="position: absolute; top: 30px; right: 40px; color: var(--gold); font-size: 40px; cursor: pointer;">×</span>
+    <span style="position: absolute; top: 30px; right: 40px; color: var(--gold); font-size: 40px; cursor: pointer;">×</span>
     <img id="modal-img" src="" alt="Imagem ampliada">
   </div>
 
@@ -200,8 +235,8 @@
           <a href="#servicos">Serviços</a>
           <a href="#tricologia">Tricologia</a>
           <a href="#galeria">Galeria</a>
-          <a href="#agendar">Agendar</a>
-          <a href="https://wa.me/5531992555714" class="nav-cta">AGENDAR EM BH</a>
+          <a href="#depoimentos">Depoimentos</a>
+          <a href="#agendar" class="nav-cta">AGENDAR HORÁRIO AGORA</a>
         </div>
         <button class="hamburger" id="hamburger-btn"><span></span><span></span><span></span></button>
       </nav>
@@ -209,22 +244,22 @@
     <div class="mobile-menu" id="mobile-menu">
       <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
+      <a href="#tricologia">Tricologia</a>
+      <a href="#galeria">Galeria</a>
       <a href="#agendar">Agendar</a>
     </div>
   </header>
 
   <main>
-   <section id="hero">
+    <section id="hero">
       <div class="hero-bg"></div>
       <div class="hero-content">
-        <div class="hero-logo-wrapper" style="margin-bottom: 35px;">
-            <img src="images/logo-iz-hair.png" alt="IZ Hair Concept Logo" style="width: 400px; height: auto;">
-        </div>
-        <p class="hero-eyebrow">Salão Premium no Funcionários BH</p>
+        <div style="margin-bottom: 35px;"><img src="images/logo-iz-hair.png" alt="IZ Hair Concept Logo" style="width: 400px; height: auto;"></div>
+        <p class="hero-eyebrow">Expertise em Fios no Funcionários BH</p>
         <h1>A arte da <em>cor</em> e o cuidado da <em>ciência</em>.</h1>
-        <p class="hero-desc">Especialista em coloração artística e tricologia avançada em Belo Horizonte. Transformações capilares com saúde e exclusividade.</p>
+        <p class="hero-desc">Coloração artística, tricologia avançada e transformações capilares de alto padrão. Por Izabella Miranda, especialista em cor e saúde capilar em Belo Horizonte.</p>
         <div class="hero-actions">
-          <a href="#agendar" class="btn-primary">AGENDAR HORÁRIO</a>
+          <a href="#agendar" class="btn-primary">AGENDAR HORÁRIO AGORA</a>
           <a href="#servicos" class="btn-ghost">Ver serviços</a>
         </div>
       </div>
@@ -235,14 +270,18 @@
         <div class="sobre-grid">
           <div class="sobre-img-wrap reveal">
             <div class="sobre-img-placeholder" onclick="openImage('images/izabella-miranda-especialista.JPG')">
-              <img src="images/izabella-miranda-especialista.JPG" alt="Izabella Miranda, especialista em tricologia em BH">
+              <img src="images/izabella-miranda-especialista.JPG" alt="Izabella Miranda, cabeleireira no Funcionários BH">
             </div>
             <div class="sobre-frame"></div>
           </div>
           <div class="sobre-text">
-            <p class="section-eyebrow">Izabella Miranda</p>
+            <p class="section-eyebrow">Sobre a profissional</p>
             <h2>Arte e ciência no <em>Funcionários</em></h2>
-            <p>Aliamos técnica internacional e saúde capilar para entregar o loiro e a cor dos seus sonhos sem comprometer a integridade dos fios. Localizada no coração do bairro Funcionários, a IZ Hair Concept é referência em diagnóstico tricológico e coloração de alto padrão em BH.</p>
+            <p>Izabella Miranda alia técnica apurada e conhecimento profundo da saúde capilar no coração do bairro Funcionários. No IZ Hair Concept, cada atendimento foca no diagnóstico e resultado duradouro.</p>
+            <div class="sobre-stats">
+              <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Anos de experiência</div></div>
+              <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Personalizado</div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -250,15 +289,71 @@
 
     <section id="servicos">
       <div class="container">
-        <h2 style="text-align:center">Nossos Serviços em BH</h2>
+        <h2>Serviços que <em>transformam</em></h2>
         <div class="servicos-grid">
           <article class="servico-card">
+            <span class="servico-icon"><i data-lucide="palette"></i></span>
             <h3 class="servico-name">Coloração Artística</h3>
-            <p>Mechas, Balayage e correções de cor com foco em naturalidade e brilho intenso.</p>
+            <p class="servico-desc">Mechas, luzes e balayage com análise individualizada no bairro Funcionários.</p>
           </article>
           <article class="servico-card">
-            <h3 class="servico-name">Tricologia Avançada</h3>
-            <p>Diagnóstico e tratamento do couro cabeludo para queda e saúde dos fios.</p>
+            <span class="servico-icon"><i data-lucide="microscope"></i></span>
+            <h3 class="servico-name">Tricologia</h3>
+            <p class="servico-desc">Diagnóstico capilar avançado e tratamentos para saúde do couro cabeludo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tricologia">
+      <div class="container">
+        <div class="trico-grid">
+          <div>
+            <p class="section-eyebrow">Saúde capilar em BH</p>
+            <h2>Tricologia: a ciência por trás da <em>beleza saudável</em></h2>
+            <ul class="trico-list">
+              <li>Diagnóstico de queda capilar</li>
+              <li>Análise do couro cabeludo</li>
+              <li>Cronograma capilar personalizado</li>
+            </ul>
+          </div>
+          <div class="trico-highlight">
+            <p style="font-family: var(--ff-display); font-size: 1.8rem;">"O resultado vem de um diagnóstico honesto."</p>
+            <p style="color: var(--gold); margin-top: 20px;">— Izabella Miranda</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 80px;">Resultados que <em>falam por si</em></h2>
+        <div class="galeria-grid">
+          <div class="galeria-item" onclick="openImage('images/loiro-premium-funcionarios.JPG')">
+            <div class="placeholder-img"><img src="images/loiro-premium-funcionarios.JPG" alt="Loiro Premium BH"></div>
+            <div class="galeria-overlay"><span>Loiro Premium</span></div>
+          </div>
+          <div class="galeria-item" onclick="openImage('images/mechas-loiras-saudaveis.JPG')">
+            <div class="placeholder-img"><img src="images/mechas-loiras-saudaveis.JPG" alt="Mechas Saudáveis"></div>
+            <div class="galeria-overlay"><span>Loiros</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos">
+      <div class="container">
+        <h2>Experiências que <em>encantam</em></h2>
+        <div class="depo-grid">
+          <article class="depo-card">
+            <div class="depo-stars">★★★★★</div>
+            <p class="depo-text">"Izabella transformou meu cabelo. A análise tricológica foi o diferencial!"</p>
+            <p><strong>Ana Carolina M.</strong></p>
+          </article>
+          <article class="depo-card">
+            <div class="depo-stars">★★★★★</div>
+            <p class="depo-text">"Melhor loiro do bairro Funcionários. Cuidado impecável com os fios."</p>
+            <p><strong>Fernanda R.</strong></p>
           </article>
         </div>
       </div>
@@ -268,15 +363,14 @@
       <div class="container">
         <div class="lead-grid">
           <div>
-            <p class="section-eyebrow">Agendamento Online</p>
-            <h2>Garanta sua vaga no <em>Funcionários</em></h2>
-            <p>Agende sua avaliação personalizada na Rua Piauí, 1285.</p>
+            <h2>Sua jornada de <em>transformação</em> começa aqui.</h2>
+            <p>Rua Piauí, 1285 - Funcionários, Belo Horizonte.</p>
           </div>
           <div class="lead-form-card">
             <form id="lead-form">
-              <div class="form-group"><input type="text" id="nome" placeholder="Seu Nome" required></div>
+              <div class="form-group"><input type="text" id="nome" placeholder="Nome Completo" required></div>
               <div class="form-group"><input type="tel" id="telefone" placeholder="WhatsApp (31)" required></div>
-              <button type="submit" class="btn-submit">ENVIAR E AGENDAR</button>
+              <button type="submit" class="btn-submit">QUERO AGENDAR MEU HORÁRIO!</button>
             </form>
           </div>
         </div>
@@ -289,18 +383,26 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <span class="logo-iz">IZ</span>
-          <p>Rua Piauí, 1285, Funcionários - Belo Horizonte/MG</p>
+          <p>Salão premium especializado em coloração e tricologia no Funcionários BH.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/izabellamirandabeauty/" class="social-link">ig</a>
+          </div>
         </div>
         <div class="footer-col">
-          <h4>Contato</h4>
+          <h4>Localização</h4>
+          <p>Rua Piauí, 1285, Funcionários - BH/MG</p>
           <p>(31) 9 9255-5714</p>
         </div>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-size: 0.7rem; color: rgba(245,240,232,0.3);">
+        <p>© 2026 IZ Hair Concept by Izabella Miranda. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <a href="https://wa.me/5531992555714" class="wa-float" target="_blank">
-    <span>Falar no WhatsApp</span>
+    <svg viewBox="0 0 24 24" fill="white" style="width: 20px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>WhatsApp</span>
   </a>
 
   <script>
@@ -312,8 +414,13 @@
     const mobileMenu = document.getElementById("mobile-menu");
     hamburger.addEventListener("click", () => { mobileMenu.classList.toggle("open"); });
 
-    function openImage(src) { document.getElementById('modal-img').src = src; document.getElementById('image-modal').style.display = 'flex'; }
-    function closeImage() { document.getElementById('image-modal').style.display = 'none'; }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    function openImage(src) { document.getElementById('modal-img').src = src; document.getElementById('image-modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+    function closeImage() { document.getElementById('image-modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
   </script>
 </body>
 </html>
