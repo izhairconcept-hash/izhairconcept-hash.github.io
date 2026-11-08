@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18556249023">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18556249023');
-</script>
 <head>
-  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NTKN3BBQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
-  <link rel="icon" type="image/png" href="favicon.png?v=1">
-  <script src="https://unpkg.com/lucide@latest"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6E4X0X0X0"></script>
+  <!-- Google tag (gtag.js) - Unificada: Ads + Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLC9N89TR0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-V6E4X0X0X0');
-    
+    // Google Analytics 4
+    gtag('config', 'G-ZLC9N89TR0');
+
+    // Google Ads
+    gtag('config', 'AW-18556249023');
+
     // Rastreamento de cliques no botão de WhatsApp
     document.addEventListener('DOMContentLoaded', function() {
       const waButtons = document.querySelectorAll('a[href*="wa.me"]');
@@ -39,6 +27,10 @@
       });
     });
   </script>
+
+  <link rel="icon" type="image/png" href="favicon.png?v=1">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -1181,6 +1173,15 @@
         origem: "Site Oficial - Form Principal",
         data: new Date().toLocaleString("pt-BR")
       };
+
+      // Disparo do evento de conversão do formulário para Analytics e Ads
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          'event_category': 'Engagement',
+          'event_label': 'Lead Form Submission',
+          'service_selected': formData.servico
+        });
+      }
 
       // URL REAL DO GOOGLE APPS SCRIPT (SUBSTITUA PELA SUA URL REAL)
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_9z_0X_0X_0X_0X_0X_0X_0X_0X_0X_0X/exec"; 
