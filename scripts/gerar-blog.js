@@ -243,3 +243,62 @@ ${todasUrls.map(u => `  <url>
   fs.writeFileSync('./sitemap.xml', sitemapXml, 'utf-8');
   console.log(`sitemap.xml atualizado com ${todasUrls.length} URLs.`);
 }
+
+
+async function main() {
+  try {
+    if (!API_KEY) {
+      throw new Error('A variável de ambiente GEMINI_API_KEY não está definida.');
+    }
+
+    if (!fs.existsSync(PAUTAS_PATH) || !fs.existsSync(TEMPLATE_PATH)) {
+      throw new Error('Arquivos blog/pautas.json ou blog/template-post.html não encontrados.');
+    }
+
+    const pautas = JSON.parse(fs.readFileSync(PAUTAS_PATH, 'utf-8'));
+    let proxima = pautas.find(p => p.status === 'pendente');
+
+    if (!proxima) {
+      console.log('Fila inicial concluída. Gerando nova pauta inédita via Gemini...');
+      proxima = await gerarNovaPautaInedita(pautas);
+      pautas.push(proxima);
+      console.log(`Nova pauta criada (#${proxima.id}): "${proxima.tema}"`);
+    }
+
+    console.log(`Gerando artigo para pauta #${proxima.id}: "${proxima.tema}"...`);
+    const artigo = await gerarArtigo(proxima);
+    const slugFinal = sanitizarSlug(artigo.slug || proxima.keyword);
+    const dataIso = new Date().toISOString().split('T')[0];
+
+    let html = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
+    const faqSchema = montarFaqSchema(artigo.faqs);
+
+    html = html
+      .replaceAll('{{TITULO}}', artigo.titulo)
+      .replaceAll('{{META_DESCRIPTION}}', artigo.meta_description)
+      .replaceAll('{{SLUG}}', slugFinal)
+      .replaceAll('{{DATA_ISO}}', dataIso)
+      .replaceAll('{{RESUMO_DIRETO}}', artigo.resumo_direto)
+      .replaceAll('{{CONTEUDO_HTML}}', artigo.conteudo_html)
+      .replaceAll('{{SCHEMA_FAQ}}', faqSchema);
+
+    const caminhoArtigo = `./blog/${slugFinal}.html`;
+    fs.writeFileSync(caminhoArtigo, html, 'utf-8');
+    console.log(`Artigo salvo em: ${caminhoArtigo}`);
+
+    proxima.status = 'publicado';
+    proxima.slug = slugFinal;
+    proxima.titulo = artigo.titulo;
+    proxima.resumo = artigo.resumo_direto;
+    proxima.data = dataIso;
+    fs.writeFileSync(PAUTAS_PATH, JSON.stringify(pautas, null, 2), 'utf-8');
+
+    atualizarIndiceESitemap(pautas);
+    console.log('Processo concluído com sucesso!');
+  } catch (erro) {
+    console.error('Falha na execução do gerador:', erro.message);
+    process.exit(1);
+  }
+}
+
+main();
