@@ -6,6 +6,9 @@
   <title>Blog de Beleza e Cuidados | Iz Hair Concept - Funcionários, BH</title>
   <meta name="description" content="Dicas de cabelo, unhas e cuidados capilares preparadas pelos especialistas do Iz Hair Concept no bairro Funcionários, Belo Horizonte.">
   <link rel="canonical" href="https://izhairconcept.com.br/blog/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Google Tag / GA4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLC9N89TR8"></script>
@@ -16,23 +19,192 @@
     gtag('config', 'G-ZLC9N89TR8');
     gtag('config', 'AW-18556249023');
   </script>
+
+  <style>
+    :root {
+      --gold: #C9A96E;
+      --gold-light: #E8D5B0;
+      --gold-dark: #A07840;
+      --cream: #FAF7F2;
+      --warm-white: #F5F0E8;
+      --charcoal: #1A1714;
+      --mid: #3D3530;
+      --muted: #8A7D72;
+      --border: rgba(201,169,110,0.25);
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body: 'Jost', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--charcoal);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--gold);
+      font-family: var(--ff-display);
+      font-size: 1.9rem;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .brand span {
+      display: block;
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .topbar a.voltar {
+      color: var(--warm-white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .topbar a.voltar:hover { color: var(--gold); }
+
+    .hero-blog {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.5rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-blog h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.3rem, 5vw, 3.2rem);
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-blog p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .lista-posts {
+      max-width: 960px;
+      margin: 1rem auto 4rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .post-card {
+      background-color: rgba(61, 53, 48, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+
+    .post-card time {
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .post-card h2 {
+      font-family: var(--ff-display);
+      font-size: 1.6rem;
+      line-height: 1.25;
+      margin-bottom: 0.85rem;
+      font-weight: 600;
+    }
+
+    .post-card h2 a {
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .post-card h2 a:hover { color: var(--gold-light); }
+
+    .post-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .ler-mais {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .ler-mais:hover { color: var(--gold-light); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav><a href="/">← Voltar para o site Iz Hair Concept</a></nav>
+  <div class="topbar">
+    <a href="/" class="brand">IZ<span>HAIR CONCEPT • BY IZABELLA MIRANDA</span></a>
+    <a href="/" class="voltar">← Voltar para o site</a>
+  </div>
+
+  <header class="hero-blog">
     <h1>Blog Iz Hair Concept</h1>
-    <p>Guias práticos de beleza, cuidados capilares e bem-estar em Belo Horizonte.</p>
+    <p>Guias práticos de beleza, cuidados capilares e bem-estar no bairro Funcionários, Belo Horizonte.</p>
   </header>
 
   <main class="lista-posts">
     
     <article class="post-card">
       <time datetime="2026-11-22">22/11/2026</time>
-      <h2><a href="/blog/cronograma-capilar-belo-horizonte-clima-seco.html">Cronograma Capilar em Belo Horizonte: Como Evitar o Ressecamento</a></h2>
-      <p>O cronograma capilar em Belo Horizonte exige adaptações devido ao clima seco e à baixa umidade da região Centro-Sul. Alternar hidratação profunda, nutrição rica em óleos e reconstrução protege a fibra capilar do ressecamento severo. No Iz Hair Concept, personalizamos esse tratamento para devolver o brilho e a maciez aos seus cabelos.</p>
+      <h2><a href="/blog/cronograma-capilar-belo-horizonte-clima-seco.html">Cronograma Capilar em BH: Salve Seus Fios no Clima Seco</a></h2>
+      <p>O cronograma capilar para o clima seco de Belo Horizonte exige foco em hidratação profunda e nutrição com óleos nobres para repor a água e os lipídios perdidos devido à baixa umidade da capital mineira. Intercalar essas etapas com reconstrução protege a fibra contra a poluição e os ventos da região Centro-Sul.</p>
       <a href="/blog/cronograma-capilar-belo-horizonte-clima-seco.html" class="ler-mais">Ler guia completo →</a>
     </article>
   
   </main>
+
+  <footer>
+    <p>Iz Hair Concept — Rua Piauí, 1285, Funcionários, Belo Horizonte - MG</p>
+  </footer>
 </body>
 </html>
