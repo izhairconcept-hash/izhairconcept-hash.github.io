@@ -1,3 +1,11 @@
+      - name: Conferir arquivos e gerar artigo via Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          ls -la
+          ls -la blog/ || true
+          node scripts/gerar-blog.js
+
 name: Publicar Artigo Semanal no Blog
 on:
   schedule:
