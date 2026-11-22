@@ -35,30 +35,35 @@ function montarFaqSchema(faqs) {
 }
 
 async function chamarGemini(prompt) {
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { responseMimeType: 'application/json' }
-      })
+  const modelos = ['gemini-flash-lite-latest', 'gemini-flash-latest'];
+  let ultimoErro = '';
+
+  for (const modelo of modelos) {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { responseMimeType: 'application/json' }
+        })
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        console.log(`Gerado com sucesso usando o modelo: ${modelo}`);
+        return JSON.parse(data.candidates[0].content.parts[0].text);
+      }
     }
-  );
 
-  if (!response.ok) {
-    const erroDetalhes = await response.text();
-    throw new Error(`Erro na API do Gemini (${response.status}): ${erroDetalhes}`);
+    ultimoErro = await response.text();
+    console.warn(`Modelo ${modelo} indisponível (${response.status}), tentando próximo...`);
   }
 
-  const data = await response.json();
-
-  if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
-    throw new Error('Resposta vazia ou bloqueada pelos filtros da API do Gemini.');
-  }
-
-  return JSON.parse(data.candidates[0].content.parts[0].text);
+  throw new Error(`Falha em todos os modelos do Gemini: ${ultimoErro}`);
 }
 
 async function gerarNovaPautaInedita(pautasExistentes) {
