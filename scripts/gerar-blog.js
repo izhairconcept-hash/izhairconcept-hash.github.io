@@ -91,20 +91,20 @@ async function gerarNovaPautaInedita(pautasExistentes) {
     : 1;
 
   const promptPauta = `
-Você é o editor-chefe de conteúdo do salão de alto padrão "Iz Hair Concept" (Belo Horizonte - MG).
-Todos os temas planejados anteriormente já foram publicados. Crie UMA nova pauta editorial inédita, sofisticada e útil para clientes exigentes.
+Você é o editor-chefe de conteúdo do salão boutique "Iz Hair Concept" (Belo Horizonte - MG).
+Todos os temas planejados anteriormente já foram publicados. Crie UMA nova pauta editorial inédita, sofisticada e útil.
 
 Serviços permitidos: cuidados capilares, coloração, mechas, loiros, morena iluminada, hidratação, nutrição, reconstrução, progressiva sem formol, corte, escova, manicure, pedicure, esmaltação em gel, blindagem, alongamento de unhas e spa dos pés.
 PROIBIDO: Nunca gere temas sobre Dia da Noiva, penteados de noiva, maquiagem ou design de sobrancelhas.
-ESTILO DO TEMA: Use linguagem editorial de revista de beleza. NUNCA coloque nomes de bairros ou cidades ("BH", "Belo Horizonte", "Funcionários", "Savassi") no tema.
+NATURALIDADE EDITORIAL: Escreva como uma revista de beleza de alto padrão. Evite forçar "em BH" ou "no Funcionários" no tema; só mencione Belo Horizonte se houver um motivo real e orgânico (como clima seco, estação do ano ou estilo de vida urbano).
 
 Artigos JÁ PUBLICADOS (NÃO repita estes temas nem variações parecidas):
 ${historicoTitulos || 'Nenhum artigo publicado ainda.'}
 
 Responda EXCLUSIVAMENTE com um JSON válido neste formato:
 {
-  "tema": "Título editorial elegante e atraente sem nomes de cidade ou bairro",
-  "keyword": "palavra-chave principal do serviço com 2 a 4 palavras sem acentos (ex: esmaltacao em gel durabilidade)"
+  "tema": "Título editorial natural e sofisticado",
+  "keyword": "palavra-chave principal do serviço com 2 a 4 palavras sem acentos"
 }
 `;
 
@@ -125,8 +125,8 @@ Escreva um artigo editorial sofisticado, técnico e acolhedor sobre: "${pauta.te
 Foco temático: "${pauta.keyword}".
 
 Regras obrigatórias de estilo, SEO e GEO:
-1. TÍTULO EDITORIAL LIMPO: O campo "titulo" DEVE ser elegante, natural e parecido com uma matéria de revista de beleza (ex: "Esmaltação em Gel: O Guia Definitivo para Unhas Impecáveis"). É TERMINANTEMENTE PROIBIDO incluir "BH", "Belo Horizonte", "Funcionários" ou "Savassi" no "titulo" ou no "slug".
-2. LOCALIZAÇÃO DISCRETA: Deixe as referências a Belo Horizonte, Funcionários e Savassi apenas na "meta_description" e em 1 ou 2 menções naturais dentro do texto (falando sobre o clima seco de BH ou a rotina na região Centro-Sul).
+1. TÍTULO NATURAL E EDITORIAL: O campo "titulo" deve soar como uma matéria de revista de beleza, nunca como um robô de SEO. Só inclua "BH" ou "Belo Horizonte" no título se o tema depender disso de forma inteligente (ex: clima seco da cidade); caso contrário, mantenha o título 100% limpo e elegante.
+2. CONTEXTO LOCAL ORGÂNICO: Insira a localização (Belo Horizonte, Funcionários/Savassi e o Iz Hair Concept) na "meta_description" e de forma sutil e natural dentro do artigo, sem repetições forçadas.
 3. Crie um "resumo_direto" de 2 a 3 frases respondendo objetivamente à dúvida principal do tema.
 4. Estruture o "conteudo_html" usando apenas tags <h2>, <h3>, <p>, <ul>, <li> e <strong>.
 5. Inclua 3 perguntas e respostas reais no array "faqs" para gerar Schema FAQPage.
@@ -134,7 +134,7 @@ Regras obrigatórias de estilo, SEO e GEO:
 
 Responda EXCLUSIVAMENTE com um JSON válido neste formato:
 {
-  "titulo": "Título editorial elegante com até 65 caracteres (SEM nomes de cidade/bairro)",
+  "titulo": "Título editorial elegante com até 65 caracteres",
   "slug": "url-amigavel-limpa-sem-acentos",
   "meta_description": "Descrição elegante de até 155 caracteres mencionando o Iz Hair Concept no Funcionários, BH",
   "resumo_direto": "Resposta direta e objetiva em 40-60 palavras",
