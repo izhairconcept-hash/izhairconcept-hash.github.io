@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "status": "pendente",
+    "tema": "Cronograma capilar para o clima seco de Belo Horizonte: como evitar o ressecamento",
+    "keyword": "cronograma capilar belo horizonte"
+  },
+  {
+    "id": 2,
+    "status": "pendente",
+    "tema": "Manicure e esmaltação em gel perto da Savassi e Funcionários: o que avaliar antes de agendar",
+    "keyword": "manicure funcionarios bh"
+  },
+  {
+    "id": 3,
+    "status": "pendente",
+    "tema": "Morena Iluminada e mechas sem danos: cuidados antes e depois da descoloração",
+    "keyword": "morena iluminada funcionarios bh"
+  },
+  {
+    "id": 4,
+    "status": "pendente",
+    "tema": "Blindagem e banho de gel nas unhas: como proteger as unhas naturais contra quebras",
+    "keyword": "blindagem de unhas funcionarios bh"
+  },
+  {
+    "id": 5,
+    "status": "pendente",
+    "tema": "Progressiva sem formol e alinhamento térmico: como manter o liso natural por mais tempo",
+    "keyword": "progressiva sem formol belo horizonte"
+  },
+  {
+    "id": 6,
+    "status": "pendente",
+    "tema": "Reconstrução capilar pós-química: quando o cabelo precisa de queratina ou nutrição",
+    "keyword": "reconstrucao capilar savassi bh"
+  },
+  {
+    "id": 7,
+    "status": "pendente",
+    "tema": "Alongamento de unhas em fibra de vidro vs gel: qual dura mais na rotina do dia a dia",
+    "keyword": "alongamento de unhas funcionarios bh"
+  },
+  {
+    "id": 8,
+    "status": "pendente",
+    "tema": "Escova modelada e finalização profissional: como fazer o efeito de salão durar mais dias",
+    "keyword": "escova e hidratacao funcionarios bh"
+  },
+  {
+    "id": 9,
+    "status": "pendente",
+    "tema": "Cuidados com cabelos loiros e platinados: como evitar o amarelado e manter o brilho",
+    "keyword": "salao especialista em loiros bh"
+  },
+  {
+    "id": 10,
+    "status": "pendente",
+    "tema": "Spa dos pés e podologia estética: benefícios para quem trabalha muito tempo em pé ou de salto",
+    "keyword": "pedicure e spa dos pes belo horizonte"
+  }
+]
