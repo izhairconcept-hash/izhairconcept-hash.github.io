@@ -91,19 +91,20 @@ async function gerarNovaPautaInedita(pautasExistentes) {
     : 1;
 
   const promptPauta = `
-Você é o estrategista de SEO local do salão "Iz Hair Concept", localizado na Rua Piauí, 1285, bairro Funcionários, Belo Horizonte - MG (próximo à Savassi).
-Todos os temas planejados anteriormente já foram publicados. Crie UMA nova pauta inédita de alta intenção de busca local.
+Você é o editor-chefe de conteúdo do salão de alto padrão "Iz Hair Concept" (Belo Horizonte - MG).
+Todos os temas planejados anteriormente já foram publicados. Crie UMA nova pauta editorial inédita, sofisticada e útil para clientes exigentes.
 
 Serviços permitidos: cuidados capilares, coloração, mechas, loiros, morena iluminada, hidratação, nutrição, reconstrução, progressiva sem formol, corte, escova, manicure, pedicure, esmaltação em gel, blindagem, alongamento de unhas e spa dos pés.
 PROIBIDO: Nunca gere temas sobre Dia da Noiva, penteados de noiva, maquiagem ou design de sobrancelhas.
+ESTILO DO TEMA: Use linguagem editorial de revista de beleza. NUNCA coloque nomes de bairros ou cidades ("BH", "Belo Horizonte", "Funcionários", "Savassi") no tema.
 
-Artigos JÁ PUBLICADOS (NÃO repita estes temas nem variações muito parecidas):
+Artigos JÁ PUBLICADOS (NÃO repita estes temas nem variações parecidas):
 ${historicoTitulos || 'Nenhum artigo publicado ainda.'}
 
 Responda EXCLUSIVAMENTE com um JSON válido neste formato:
 {
-  "tema": "Título descritivo da nova pauta conectando o serviço à rotina ou clima de BH/Funcionários/Savassi",
-  "keyword": "palavra-chave local principal com 3 a 5 palavras sem acentos (ex: hidratacao profunda savassi bh)"
+  "tema": "Título editorial elegante e atraente sem nomes de cidade ou bairro",
+  "keyword": "palavra-chave principal do serviço com 2 a 4 palavras sem acentos (ex: esmaltacao em gel durabilidade)"
 }
 `;
 
@@ -119,22 +120,23 @@ Responda EXCLUSIVAMENTE com um JSON válido neste formato:
 
 async function gerarArtigo(pauta) {
   const promptArtigo = `
-Você é a redatora especialista em beleza do salão "Iz Hair Concept", localizado na Rua Piauí, 1285, bairro Funcionários, Belo Horizonte - MG (próximo à Savassi).
-Escreva um artigo técnico, prático e acolhedor sobre: "${pauta.tema}".
-Palavra-chave foco: "${pauta.keyword}".
+Você é a redatora-chefe do salão boutique "Iz Hair Concept", localizado na Rua Piauí, 1285, bairro Funcionários, Belo Horizonte - MG (próximo à Savassi).
+Escreva um artigo editorial sofisticado, técnico e acolhedor sobre: "${pauta.tema}".
+Foco temático: "${pauta.keyword}".
 
-Regras obrigatórias para SEO Local e GEO (citação por IAs):
-1. Mencione naturalmente o contexto de Belo Horizonte (clima, rotina da região Centro-Sul/Funcionários/Savassi) sem parecer robótico.
-2. Crie um "resumo_direto" de 2 a 3 frases respondendo objetivamente à dúvida principal do tema (ideal para Featured Snippets e IAs).
-3. Estruture o "conteudo_html" usando apenas tags <h2>, <h3>, <p>, <ul>, <li> e <strong>.
-4. Inclua 3 perguntas e respostas reais no array "faqs" para gerar Schema FAQPage.
-5. Nunca invente promoções ou preços não informados.
+Regras obrigatórias de estilo, SEO e GEO:
+1. TÍTULO EDITORIAL LIMPO: O campo "titulo" DEVE ser elegante, natural e parecido com uma matéria de revista de beleza (ex: "Esmaltação em Gel: O Guia Definitivo para Unhas Impecáveis"). É TERMINANTEMENTE PROIBIDO incluir "BH", "Belo Horizonte", "Funcionários" ou "Savassi" no "titulo" ou no "slug".
+2. LOCALIZAÇÃO DISCRETA: Deixe as referências a Belo Horizonte, Funcionários e Savassi apenas na "meta_description" e em 1 ou 2 menções naturais dentro do texto (falando sobre o clima seco de BH ou a rotina na região Centro-Sul).
+3. Crie um "resumo_direto" de 2 a 3 frases respondendo objetivamente à dúvida principal do tema.
+4. Estruture o "conteudo_html" usando apenas tags <h2>, <h3>, <p>, <ul>, <li> e <strong>.
+5. Inclua 3 perguntas e respostas reais no array "faqs" para gerar Schema FAQPage.
+6. Nunca invente promoções ou preços não informados.
 
 Responda EXCLUSIVAMENTE com um JSON válido neste formato:
 {
-  "titulo": "Título atraente com até 65 caracteres",
-  "slug": "url-amigavel-sem-acentos",
-  "meta_description": "Descrição de até 155 caracteres com chamada para BH",
+  "titulo": "Título editorial elegante com até 65 caracteres (SEM nomes de cidade/bairro)",
+  "slug": "url-amigavel-limpa-sem-acentos",
+  "meta_description": "Descrição elegante de até 155 caracteres mencionando o Iz Hair Concept no Funcionários, BH",
   "resumo_direto": "Resposta direta e objetiva em 40-60 palavras",
   "conteudo_html": "<h2>...</h2><p>...</p>",
   "faqs": [
