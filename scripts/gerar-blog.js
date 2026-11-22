@@ -1,9 +1,38 @@
 import fs from 'fs';
-import path from 'path';
 
 const API_KEY = process.env.GEMINI_API_KEY;
 const PAUTAS_PATH = './blog/pautas.json';
 const TEMPLATE_PATH = './blog/template-post.html';
+const DOMAIN = 'https://izhairconcept.com.br';
+
+function sanitizarSlug(texto) {
+  return texto
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+    .replace(/[^a-z0-9-]+/g, '-')    // Substitui caracteres especiais por hífen
+    .replace(/^-+|-+$/g, '');        // Remove hífens nas pontas
+}
+
+function formatarDataBR(dataIso) {
+  const [ano, mes, dia] = dataIso.split('-');
+  return `${dia}/${mes}/${ano}`;
+}
+
+function montarFaqSchema(faqs) {
+  if (!Array.isArray(faqs) || faqs.length === 0) return '';
+  return JSON.stringify({
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(item => ({
+      "@type": "Question",
+      "name": item.pergunta,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.resposta
+      }
+    }))
+  });
+}
 
 async function gerarArtigo(pauta) {
   const prompt = `
@@ -43,58 +72,156 @@ Responda EXCLUSIVAMENTE com um JSON válido neste formato:
     }
   );
 
+  if (!response.ok) {
+    const erroDetalhes = await response.text();
+    throw new Error(`Erro na API do Gemini (${response.status}): ${erroDetalhes}`);
+  }
+
   const data = await response.json();
+
+  if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
+    throw new Error('Resposta vazia ou bloqueada pelos filtros da API do Gemini.');
+  }
+
   const textoJson = data.candidates[0].content.parts[0].text;
   return JSON.parse(textoJson);
 }
 
-function montarFaqSchema(faqs) {
-  return JSON.stringify({
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(item => ({
-      "@type": "Question",
-      "name": item.pergunta,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.resposta
-      }
-    }))
-  });
+function atualizarIndiceESitemap(pautas) {
+  const publicados = pautas
+    .filter(p => p.status === 'publicado')
+    .sort((a, b) => new Date(b.data) - new Date(a.data));
+
+  // 1. Gerar cards e página blog/index.html
+  const cardsHtml = publicados.map(post => `
+    <article class="post-card">
+      <time datetime="${post.data}">${formatarDataBR(post.data)}</time>
+      <h2><a href="/blog/${post.slug}.html">${post.titulo}</a></h2>
+      <p>${post.resumo || ''}</p>
+      <a href="/blog/${post.slug}.html" class="ler-mais">Ler guia completo →</a>
+    </article>
+  `).join('\n');
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog de Beleza e Cuidados | Iz Hair Concept - Funcionários, BH</title>
+  <meta name="description" content="Dicas de cabelo, unhas e cuidados capilares preparadas pelos especialistas do Iz Hair Concept no bairro Funcionários, Belo Horizonte.">
+  <link rel="canonical" href="${DOMAIN}/blog/">
+
+  <!-- Google Tag / GA4 + Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLC9N89TR8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZLC9N89TR8');
+    gtag('config', 'AW-18556249023');
+  </script>
+</head>
+<body>
+  <header>
+    <nav><a href="/">← Voltar para o site Iz Hair Concept</a></nav>
+    <h1>Blog Iz Hair Concept</h1>
+    <p>Guias práticos de beleza, cuidados capilares e bem-estar em Belo Horizonte.</p>
+  </header>
+
+  <main class="lista-posts">
+    ${cardsHtml || '<p>Em breve novos artigos.</p>'}
+  </main>
+</body>
+</html>`;
+
+  fs.writeFileSync('./blog/index.html', indexHtml, 'utf-8');
+  console.log('blog/index.html atualizado.');
+
+  // 2. Regenerar sitemap.xml na raiz
+  const dataHoje = new Date().toISOString().split('T')[0];
+
+  const paginasFixas = [
+    { loc: `${DOMAIN}/`, lastmod: dataHoje, priority: '1.0' },
+    { loc: `${DOMAIN}/wifi/`, lastmod: dataHoje, priority: '0.5' },
+    { loc: `${DOMAIN}/blog/`, lastmod: dataHoje, priority: '0.8' }
+  ];
+
+  const urlsArtigos = publicados.map(post => ({
+    loc: `${DOMAIN}/blog/${post.slug}.html`,
+    lastmod: post.data,
+    priority: '0.7'
+  }));
+
+  const todasUrls = [...paginasFixas, ...urlsArtigos];
+
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${todasUrls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${u.lastmod}</lastmod>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+  fs.writeFileSync('./sitemap.xml', sitemapXml, 'utf-8');
+  console.log(`sitemap.xml atualizado com ${todasUrls.length} URLs.`);
 }
 
 async function main() {
-  const pautas = JSON.parse(fs.readFileSync(PAUTAS_PATH, 'utf-8'));
-  const proxima = pautas.find(p => p.status === 'pendente');
+  try {
+    if (!API_KEY) {
+      throw new Error('A variável de ambiente GEMINI_API_KEY não está definida.');
+    }
 
-  if (!proxima) {
-    console.log('Nenhuma pauta pendente.');
-    return;
+    if (!fs.existsSync(PAUTAS_PATH) || !fs.existsSync(TEMPLATE_PATH)) {
+      throw new Error('Arquivos blog/pautas.json ou blog/template-post.html não encontrados.');
+    }
+
+    const pautas = JSON.parse(fs.readFileSync(PAUTAS_PATH, 'utf-8'));
+    const proxima = pautas.find(p => p.status === 'pendente');
+
+    if (!proxima) {
+      console.log('Nenhuma pauta pendente encontrada. Encerrando sem alterações.');
+      return;
+    }
+
+    console.log(`Gerando artigo para pauta #${proxima.id}: "${proxima.tema}"...`);
+    const artigo = await gerarArtigo(proxima);
+    const slugFinal = sanitizarSlug(artigo.slug || proxima.keyword);
+    const dataIso = new Date().toISOString().split('T')[0];
+
+    let html = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
+    const faqSchema = montarFaqSchema(artigo.faqs);
+
+    html = html
+      .replaceAll('{{TITULO}}', artigo.titulo)
+      .replaceAll('{{META_DESCRIPTION}}', artigo.meta_description)
+      .replaceAll('{{SLUG}}', slugFinal)
+      .replaceAll('{{DATA_ISO}}', dataIso)
+      .replaceAll('{{RESUMO_DIRETO}}', artigo.resumo_direto)
+      .replaceAll('{{CONTEUDO_HTML}}', artigo.conteudo_html)
+      .replaceAll('{{SCHEMA_FAQ}}', faqSchema);
+
+    // Salva o arquivo HTML do novo artigo
+    const caminhoArtigo = `./blog/${slugFinal}.html`;
+    fs.writeFileSync(caminhoArtigo, html, 'utf-8');
+    console.log(`Artigo salvo em: ${caminhoArtigo}`);
+
+    // Atualiza o status no pautas.json
+    proxima.status = 'publicado';
+    proxima.slug = slugFinal;
+    proxima.titulo = artigo.titulo;
+    proxima.resumo = artigo.resumo_direto;
+    proxima.data = dataIso;
+    fs.writeFileSync(PAUTAS_PATH, JSON.stringify(pautas, null, 2), 'utf-8');
+
+    // Atualiza blog/index.html e sitemap.xml
+    atualizarIndiceESitemap(pautas);
+    console.log('Processo concluído com sucesso!');
+  } catch (erro) {
+    console.error('Falha na execução do gerador:', erro.message);
+    process.exit(1); // Faz o GitHub Actions marcar a execução como falha para você ser notificado
   }
-
-  console.log(`Gerando: ${proxima.tema}...`);
-  const artigo = await gerarArtigo(proxima);
-  let html = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
-
-  const dataIso = new Date().toISOString().split('T')[0];
-
-  html = html
-    .replaceAll('{{TITULO}}', artigo.titulo)
-    .replaceAll('{{META_DESCRIPTION}}', artigo.meta_description)
-    .replaceAll('{{SLUG}}', artigo.slug)
-    .replaceAll('{{DATA_ISO}}', dataIso)
-    .replaceAll('{{RESUMO_DIRETO}}', artigo.resumo_direto)
-    .replaceAll('{{CONTEUDO_HTML}}', artigo.conteudo_html)
-    .replaceAll('{{SCHEMA_FAQ}}', montarFaqSchema(artigo.faqs));
-
-  fs.writeFileSync(`./blog/${artigo.slug}.html`, html, 'utf-8');
-
-  proxima.status = 'publicado';
-  proxima.slug = artigo.slug;
-  proxima.titulo = artigo.titulo;
-  proxima.data = dataIso;
-  fs.writeFileSync(PAUTAS_PATH, JSON.stringify(pautas, null, 2), 'utf-8');
-
-  console.log(`Publicado em /blog/${artigo.slug}.html`);
 }
 
 main();
