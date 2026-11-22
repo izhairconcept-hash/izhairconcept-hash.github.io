@@ -146,6 +146,26 @@ Responda EXCLUSIVAMENTE com um JSON válido neste formato:
   return await chamarGemini(promptArtigo);
 }
 
+function limparArquivosAntigos(pautas) {
+  const arquivosPermitidos = new Set([
+    'index.html',
+    'template-post.html',
+    'pautas.json',
+    'favicon.png',
+    ...pautas
+      .filter(p => p.status === 'publicado' && p.slug)
+      .map(p => `${p.slug}.html`)
+  ]);
+
+  const arquivosNaPasta = fs.readdirSync('./blog');
+  for (const arquivo of arquivosNaPasta) {
+    if (arquivo.endsWith('.html') && !arquivosPermitidos.has(arquivo)) {
+      fs.unlinkSync(`./blog/${arquivo}`);
+      console.log(`Arquivo antigo removido: ./blog/${arquivo}`);
+    }
+  }
+}
+
 function atualizarIndiceESitemap(pautas) {
   const publicados = pautas
     .filter(p => p.status === 'publicado')
@@ -444,6 +464,7 @@ async function main() {
     proxima.data = dataIso;
     fs.writeFileSync(PAUTAS_PATH, JSON.stringify(pautas, null, 2), 'utf-8');
 
+    limparArquivosAntigos(pautas);
     atualizarIndiceESitemap(pautas);
     console.log('Processo concluído com sucesso!');
   } catch (erro) {
