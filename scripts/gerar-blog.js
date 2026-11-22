@@ -34,8 +34,71 @@ function montarFaqSchema(faqs) {
   });
 }
 
+async function chamarGemini(prompt) {
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { responseMimeType: 'application/json' }
+      })
+    }
+  );
+
+  if (!response.ok) {
+    const erroDetalhes = await response.text();
+    throw new Error(`Erro na API do Gemini (${response.status}): ${erroDetalhes}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
+    throw new Error('Resposta vazia ou bloqueada pelos filtros da API do Gemini.');
+  }
+
+  return JSON.parse(data.candidates[0].content.parts[0].text);
+}
+
+async function gerarNovaPautaInedita(pautasExistentes) {
+  const historicoTitulos = pautasExistentes
+    .map(p => `- ${p.titulo || p.tema}`)
+    .join('\n');
+
+  const proximoId = pautasExistentes.length > 0
+    ? Math.max(...pautasExistentes.map(p => p.id || 0)) + 1
+    : 1;
+
+  const promptPauta = `
+Você é o estrategista de SEO local do salão "Iz Hair Concept", localizado na Rua Piauí, 1285, bairro Funcionários, Belo Horizonte - MG (próximo à Savassi).
+Todos os temas planejados anteriormente já foram publicados. Crie UMA nova pauta inédita de alta intenção de busca local.
+
+Serviços permitidos: cuidados capilares, coloração, mechas, loiros, morena iluminada, hidratação, nutrição, reconstrução, progressiva sem formol, corte, escova, manicure, pedicure, esmaltação em gel, blindagem, alongamento de unhas e spa dos pés.
+PROIBIDO: Nunca gere temas sobre Dia da Noiva, penteados de noiva, maquiagem ou design de sobrancelhas.
+
+Artigos JÁ PUBLICADOS (NÃO repita estes temas nem variações muito parecidas):
+${historicoTitulos || 'Nenhum artigo publicado ainda.'}
+
+Responda EXCLUSIVAMENTE com um JSON válido neste formato:
+{
+  "tema": "Título descritivo da nova pauta conectando o serviço à rotina ou clima de BH/Funcionários/Savassi",
+  "keyword": "palavra-chave local principal com 3 a 5 palavras sem acentos (ex: hidratacao profunda savassi bh)"
+}
+`;
+
+  const novaIdeia = await chamarGemini(promptPauta);
+
+  return {
+    id: proximoId,
+    status: 'pendente',
+    tema: novaIdeia.tema,
+    keyword: novaIdeia.keyword
+  };
+}
+
 async function gerarArtigo(pauta) {
-  const prompt = `
+  const promptArtigo = `
 Você é a redatora especialista em beleza do salão "Iz Hair Concept", localizado na Rua Piauí, 1285, bairro Funcionários, Belo Horizonte - MG (próximo à Savassi).
 Escreva um artigo técnico, prático e acolhedor sobre: "${pauta.tema}".
 Palavra-chave foco: "${pauta.keyword}".
@@ -60,31 +123,7 @@ Responda EXCLUSIVAMENTE com um JSON válido neste formato:
 }
 `;
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { responseMimeType: 'application/json' }
-      })
-    }
-  );
-
-  if (!response.ok) {
-    const erroDetalhes = await response.text();
-    throw new Error(`Erro na API do Gemini (${response.status}): ${erroDetalhes}`);
-  }
-
-  const data = await response.json();
-
-  if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
-    throw new Error('Resposta vazia ou bloqueada pelos filtros da API do Gemini.');
-  }
-
-  const textoJson = data.candidates[0].content.parts[0].text;
-  return JSON.parse(textoJson);
+  return await chamarGemini(promptArtigo);
 }
 
 function atualizarIndiceESitemap(pautas) {
@@ -178,11 +217,14 @@ async function main() {
     }
 
     const pautas = JSON.parse(fs.readFileSync(PAUTAS_PATH, 'utf-8'));
-    const proxima = pautas.find(p => p.status === 'pendente');
+    let proxima = pautas.find(p => p.status === 'pendente');
 
+    // Modo Infinito: se acabaram as pautas pendentes, cria uma nova inédita automaticamente
     if (!proxima) {
-      console.log('Nenhuma pauta pendente encontrada. Encerrando sem alterações.');
-      return;
+      console.log('Fila inicial concluída. Gerando nova pauta inédita via Gemini...');
+      proxima = await gerarNovaPautaInedita(pautas);
+      pautas.push(proxima);
+      console.log(`Nova pauta criada (#${proxima.id}): "${proxima.tema}"`);
     }
 
     console.log(`Gerando artigo para pauta #${proxima.id}: "${proxima.tema}"...`);
@@ -220,7 +262,7 @@ async function main() {
     console.log('Processo concluído com sucesso!');
   } catch (erro) {
     console.error('Falha na execução do gerador:', erro.message);
-    process.exit(1); // Faz o GitHub Actions marcar a execução como falha para você ser notificado
+    process.exit(1);
   }
 }
 
