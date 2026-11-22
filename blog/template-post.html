@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{TITULO}} | Iz Hair Concept - Funcionários, BH</title>
+  <title>{{TITULO}} | Iz Hair Concept</title>
   <meta name="description" content="{{META_DESCRIPTION}}">
   <link rel="canonical" href="https://izhairconcept.com.br/blog/{{SLUG}}.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Google Tag / GA4 + Google Ads (já usados no seu site) -->
+  <!-- Google Tag / GA4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLC9N89TR8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,22 +20,24 @@
     gtag('config', 'AW-18556249023');
   </script>
 
-  <!-- Dados Estruturados para Google e Motores de IA (GEO) -->
+  <!-- Schema.org Article + FAQ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Article",
+        "@type": "BlogPosting",
         "headline": "{{TITULO}}",
+        "description": "{{META_DESCRIPTION}}",
         "datePublished": "{{DATA_ISO}}",
+        "dateModified": "{{DATA_ISO}}",
         "author": {
           "@type": "Organization",
           "name": "Iz Hair Concept",
           "url": "https://izhairconcept.com.br"
         },
         "publisher": {
-          "@type": "HairSalon",
+          "@type": "BeautySalon",
           "name": "Iz Hair Concept",
           "address": {
             "@type": "PostalAddress",
@@ -47,27 +52,210 @@
     ]
   }
   </script>
+
+  <style>
+    :root {
+      --bg-dark: #16120e;
+      --bg-card: #1f1a14;
+      --gold: #c9a050;
+      --gold-light: #e0be75;
+      --text-main: #f3ede4;
+      --text-muted: #b8aea0;
+      --border: rgba(201, 160, 80, 0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .brand span {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-left: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    main {
+      max-width: 780px;
+      margin: 3.5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .meta-data {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.1rem, 4.5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+    }
+
+    .resumo-box {
+      background-color: var(--bg-card);
+      border-left: 3px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+      border-radius: 0 8px 8px 0;
+      color: var(--text-main);
+      font-size: 0.98rem;
+    }
+
+    article h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      color: var(--gold-light);
+      margin: 2.2rem 0 0.9rem;
+      font-weight: 600;
+    }
+
+    article h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--text-main);
+      margin: 1.6rem 0 0.6rem;
+    }
+
+    article p { margin-bottom: 1.25rem; color: #e2dad0; }
+
+    article ul {
+      margin: 1rem 0 1.5rem 1.5rem;
+      color: #e2dad0;
+    }
+
+    article li { margin-bottom: 0.6rem; }
+
+    article strong { color: var(--gold-light); font-weight: 500; }
+
+    .cta-box {
+      margin-top: 3.5rem;
+      padding: 2.2rem;
+      background: linear-gradient(145deg, #1f1a14, #14100c);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-whatsapp {
+      display: inline-block;
+      background-color: var(--gold);
+      color: #16120e;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.95rem 2rem;
+      border-radius: 50px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 <body>
-  <article>
-    <nav><a href="/">Início</a> &gt; <a href="/blog/">Blog</a></nav>
+  <header>
+    <a href="/" class="brand">IZ<span>HAIR CONCEPT • BY IZABELLA MIRANDA</span></a>
+    <nav>
+      <a href="/">Início</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+  </header>
+
+  <main>
+    <span class="meta-data">Publicado em {{DATA_ISO}} • Funcionários, BH</span>
     <h1>{{TITULO}}</h1>
-    
-    <!-- Bloco Resumo para IAs (Snippet direto) -->
-    <aside class="resumo-ia">
-      <strong>Em resumo:</strong> {{RESUMO_DIRETO}}
-    </aside>
 
-    {{CONTEUDO_HTML}}
+    <div class="resumo-box">
+      {{RESUMO_DIRETO}}
+    </div>
 
-    <section class="cta-local">
-      <h2>Agende seu horário no Funcionários, BH</h2>
-      <p>O <strong>Iz Hair Concept</strong> fica na Rua Piauí, 1285 (próximo à Savassi e Av. Brasil). Fale com nossa equipe pelo WhatsApp:</p>
-      <a href="https://wa.me/5531992555714?text=Olá! Li o artigo sobre {{TITULO}} e gostaria de agendar." 
-         onclick="gtag('event', 'conversion', {'send_to': 'AW-18556249023'});">
-        Agendar pelo WhatsApp
-      </a>
+    <article>
+      {{CONTEUDO_HTML}}
+    </article>
+
+    <section class="cta-box">
+      <h2>Agende sua Avaliação Personalizada</h2>
+      <p>Visite o Iz Hair Concept na Rua Piauí, 1285 — Funcionários, Belo Horizonte (próximo à Savassi).</p>
+      <a href="https://wa.me/5531992555714?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20blog%20do%20Iz%20Hair%20Concept%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio." class="btn-whatsapp" target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
     </section>
-  </article>
+  </main>
+
+  <footer>
+    <p>Iz Hair Concept — Rua Piauí, 1285, Funcionários, Belo Horizonte - MG</p>
+  </footer>
 </body>
 </html>
