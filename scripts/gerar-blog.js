@@ -4,7 +4,11 @@ const API_KEY = process.env.GEMINI_API_KEY;
 const PAUTAS_PATH = './blog/pautas.json';
 const TEMPLATE_PATH = './blog/template-post.html';
 const DOMAIN = 'https://izhairconcept.com.br';
-const MODELO_ESTAVEL = 'gemini-3.6-flash';
+const MODELOS_FALLBACK = [
+  'gemini-3.6-flash',
+  'gemini-flash-latest',
+  'gemini-2.5-flash'
+];
 
 function esperar(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -42,43 +46,46 @@ function montarFaqSchema(faqs) {
 async function chamarGemini(prompt) {
   let ultimoErro = '';
 
-  for (let tentativa = 1; tentativa <= 4; tentativa++) {
-    try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${MODELO_ESTAVEL}:generateContent?key=${API_KEY}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { responseMimeType: 'application/json' }
-          })
-        }
-      );
+  for (let rodada = 1; rodada <= 2; rodada++) {
+    for (const modelo of MODELOS_FALLBACK) {
+      try {
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${API_KEY}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }],
+              generationConfig: { responseMimeType: 'application/json' }
+            })
+          }
+        );
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-          console.log(`Gerado com sucesso usando ${MODELO_ESTAVEL} (tentativa ${tentativa}).`);
-          return JSON.parse(data.candidates[0].content.parts[0].text);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+            console.log(`Gerado com sucesso usando ${modelo} (rodada ${rodada}).`);
+            return JSON.parse(data.candidates[0].content.parts[0].text);
+          }
+          ultimoErro = 'Resposta sem conteúdo válido.';
+        } else {
+          ultimoErro = `HTTP ${response.status} em ${modelo}`;
         }
-        ultimoErro = 'Resposta sem conteúdo válido.';
-      } else {
-        ultimoErro = `HTTP ${response.status}: ${await response.text()}`;
+      } catch (erroRede) {
+        ultimoErro = `${erroRede.message} em ${modelo}`;
       }
-    } catch (erroRede) {
-      ultimoErro = erroRede.message;
+
+      console.warn(`Modelo ${modelo} indisponível (${ultimoErro}). Tentando próximo modelo...`);
+      await esperar(4000);
     }
 
-    console.warn(`[Tentativa ${tentativa}/4] Falha temporária (${ultimoErro.slice(0, 120)})...`);
-
-    if (tentativa < 4) {
-      console.log('Aguardando 15 segundos antes de tentar novamente...');
+    if (rodada < 2) {
+      console.log('Todos os modelos em pico. Aguardando 15 segundos antes de nova rodada...');
       await esperar(15000);
     }
   }
 
-  throw new Error(`Falha após 4 tentativas no modelo ${MODELO_ESTAVEL}: ${ultimoErro}`);
+  throw new Error(`Falha após tentar todos os modelos de reserva: ${ultimoErro}`);
 }
 
 async function gerarNovaPautaInedita(pautasExistentes) {
