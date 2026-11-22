@@ -59,18 +59,7 @@ async function chamarGemini(prompt) {
       if (response.ok) {
         const data = await response.json();
         if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-          console.log(`Gerado com sucesso usando ${MODELO_ESTAVEL} (tentativa ${tentativa}).`);
-          return JSON.parse(data.candidates[0].content.parts[0].text);
-        }
-        ultimoErro = 'Resposta sem conteúdo válido.';
-      } else {
-        ultimoErro = `HTTP ${response.status}: ${await response.text()}`;
-      }
-    } catch (erroRede) {
-      ultimoErro = erroRede.message;
-    }
-
-    console.warn(`[Tentativa ${tentativa}/4] Falha temporária (${ultimoErro.slice(0, 120)})...`);
+          console.log(`Gerado com sucesso usando ${MODELO_ESTAVEL} (tentativa ${tentativa}).`); return JSON.parse(data.candidates[0].content.parts[0].text); } ultimoErro = 'Resposta sem conteúdo válido.'; } else { ultimoErro = `HTTP ${response.status}: ${await response.text()}`; } } catch (erroRede) { ultimoErro = erroRede.message; }  console.warn(`[Tentativa ${tentativa}/4] Falha temporária (${ultimoErro.slice(0, 120)})...`);
 
     if (tentativa < 4) {
       console.log('Aguardando 15 segundos antes de tentar novamente...');
@@ -78,12 +67,7 @@ async function chamarGemini(prompt) {
     }
   }
 
-  throw new Error(`Falha após 4 tentativas no modelo ${MODELO_ESTAVEL}: ${ultimoErro}`);
-}
-
-async function gerarNovaPautaInedita(pautasExistentes) {
-  const historicoTitulos = pautasExistentes
-    .map(p => `- ${p.titulo || p.tema}`)
+  throw new Error(`Falha após 4 tentativas no modelo ${MODELO_ESTAVEL}: ${ultimoErro}`); }  async function gerarNovaPautaInedita(pautasExistentes) { const historicoTitulos = pautasExistentes .map(p => `- ${p.titulo || p.tema}`)
     .join('\n');
 
   const proximoId = pautasExistentes.length > 0
@@ -168,6 +152,9 @@ function atualizarIndiceESitemap(pautas) {
   <title>Blog de Beleza e Cuidados | Iz Hair Concept - Funcionários, BH</title>
   <meta name="description" content="Dicas de cabelo, unhas e cuidados capilares preparadas pelos especialistas do Iz Hair Concept no bairro Funcionários, Belo Horizonte.">
   <link rel="canonical" href="${DOMAIN}/blog/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Google Tag / GA4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLC9N89TR8"></script>
@@ -178,106 +165,55 @@ function atualizarIndiceESitemap(pautas) {
     gtag('config', 'G-ZLC9N89TR8');
     gtag('config', 'AW-18556249023');
   </script>
-</head>
-<body>
-  <header>
-    <nav><a href="/">← Voltar para o site Iz Hair Concept</a></nav>
-    <h1>Blog Iz Hair Concept</h1>
-    <p>Guias práticos de beleza, cuidados capilares e bem-estar em Belo Horizonte.</p>
-  </header>
 
-  <main class="lista-posts">
-    ${cardsHtml || '<p>Em breve novos artigos.</p>'}
-  </main>
-</body>
-</html>`;
-
-  fs.writeFileSync('./blog/index.html', indexHtml, 'utf-8');
-  console.log('blog/index.html atualizado.');
-
-  const dataHoje = new Date().toISOString().split('T')[0];
-
-  const paginasFixas = [
-    { loc: `${DOMAIN}/`, lastmod: dataHoje, priority: '1.0' },
-    { loc: `${DOMAIN}/wifi/`, lastmod: dataHoje, priority: '0.5' },
-    { loc: `${DOMAIN}/blog/`, lastmod: dataHoje, priority: '0.8' }
-  ];
-
-  const urlsArtigos = publicados.map(post => ({
-    loc: `${DOMAIN}/blog/${post.slug}.html`,
-    lastmod: post.data,
-    priority: '0.7'
-  }));
-
-  const todasUrls = [...paginasFixas, ...urlsArtigos];
-
-  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${todasUrls.map(u => `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
-    <priority>${u.priority}</priority>
-  </url>`).join('\n')}
-</urlset>`;
-
-  fs.writeFileSync('./sitemap.xml', sitemapXml, 'utf-8');
-  console.log(`sitemap.xml atualizado com ${todasUrls.length} URLs.`);
-}
-
-async function main() {
-  try {
-    if (!API_KEY) {
-      throw new Error('A variável de ambiente GEMINI_API_KEY não está definida.');
+  <style>
+    :root {
+      --bg-dark: #16120e;
+      --bg-card: #1f1a14;
+      --gold: #c9a050;
+      --gold-light: #e0be75;
+      --text-main: #f3ede4;
+      --text-muted: #b8aea0;
+      --border: rgba(201, 160, 80, 0.25);
     }
 
-    if (!fs.existsSync(PAUTAS_PATH) || !fs.existsSync(TEMPLATE_PATH)) {
-      throw new Error('Arquivos blog/pautas.json ou blog/template-post.html não encontrados.');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.7;
+      font-weight: 300;
     }
 
-    const pautas = JSON.parse(fs.readFileSync(PAUTAS_PATH, 'utf-8'));
-    let proxima = pautas.find(p => p.status === 'pendente');
-
-    if (!proxima) {
-      console.log('Fila inicial concluída. Gerando nova pauta inédita via Gemini...');
-      proxima = await gerarNovaPautaInedita(pautas);
-      pautas.push(proxima);
-      console.log(`Nova pauta criada (#${proxima.id}): "${proxima.tema}"`);
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    console.log(`Gerando artigo para pauta #${proxima.id}: "${proxima.tema}"...`);
-    const artigo = await gerarArtigo(proxima);
-    const slugFinal = sanitizarSlug(artigo.slug || proxima.keyword);
-    const dataIso = new Date().toISOString().split('T')[0];
+    .brand {
+      text-decoration: none;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      line-height: 1;
+    }
 
-    let html = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
-    const faqSchema = montarFaqSchema(artigo.faqs);
+    .brand span {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
 
-    html = html
-      .replaceAll('{{TITULO}}', artigo.titulo)
-      .replaceAll('{{META_DESCRIPTION}}', artigo.meta_description)
-      .replaceAll('{{SLUG}}', slugFinal)
-      .replaceAll('{{DATA_ISO}}', dataIso)
-      .replaceAll('{{RESUMO_DIRETO}}', artigo.resumo_direto)
-      .replaceAll('{{CONTEUDO_HTML}}', artigo.conteudo_html)
-      .replaceAll('{{SCHEMA_FAQ}}', faqSchema);
-
-    const caminhoArtigo = `./blog/${slugFinal}.html`;
-    fs.writeFileSync(caminhoArtigo, html, 'utf-8');
-    console.log(`Artigo salvo em: ${caminhoArtigo}`);
-
-    proxima.status = 'publicado';
-    proxima.slug = slugFinal;
-    proxima.titulo = artigo.titulo;
-    proxima.resumo = artigo.resumo_direto;
-    proxima.data = dataIso;
-    fs.writeFileSync(PAUTAS_PATH, JSON.stringify(pautas, null, 2), 'utf-8');
-
-    atualizarIndiceESitemap(pautas);
-    console.log('Processo concluído com sucesso!');
-  } catch (erro) {
-    console.error('Falha na execução do gerador:', erro.message);
-    process.exit(1);
-  }
-}
-
-main();
+    .topbar a
