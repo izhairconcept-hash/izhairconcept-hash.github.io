@@ -4,6 +4,7 @@ const API_KEY = process.env.GEMINI_API_KEY;
 const PAUTAS_PATH = './blog/pautas.json';
 const TEMPLATE_PATH = './blog/template-post.html';
 const DOMAIN = 'https://izhairconcept.com.br';
+const MODELO_ESTAVEL = 'gemini-flash-latest';
 
 function esperar(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -13,9 +14,9 @@ function sanitizarSlug(texto) {
   return texto
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // Remove acentos
-    .replace(/[^a-z0-9-]+/g, '-')    // Substitui caracteres especiais por hífen
-    .replace(/^-+|-+$/g, '');        // Remove hífens nas pontas
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 function formatarDataBR(dataIso) {
@@ -39,18 +40,12 @@ function montarFaqSchema(faqs) {
 }
 
 async function chamarGemini(prompt) {
-  const modelos = [
-    'gemini-2.5-flash-lite',
-    'gemini-2.5-flash',
-    'gemini-flash-latest'
-  ];
   let ultimoErro = '';
 
-  // Faz até 3 rodadas completas com pausa de 20s caso haja pico (erro 503)
-  for (let tentativa = 1; tentativa <= 3; tentativa++) {
-    for (const modelo of modelos) {
+  for (let tentativa = 1; tentativa <= 4; tentativa++) {
+    try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${MODELO_ESTAVEL}:generateContent?key=${API_KEY}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -64,22 +59,26 @@ async function chamarGemini(prompt) {
       if (response.ok) {
         const data = await response.json();
         if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-          console.log(`Gerado com sucesso usando ${modelo} (tentativa ${tentativa}).`);
+          console.log(`Gerado com sucesso usando ${MODELO_ESTAVEL} (tentativa ${tentativa}).`);
           return JSON.parse(data.candidates[0].content.parts[0].text);
         }
+        ultimoErro = 'Resposta sem conteúdo válido.';
+      } else {
+        ultimoErro = `HTTP ${response.status}: ${await response.text()}`;
       }
-
-      ultimoErro = await response.text();
-      console.warn(`[Tentativa ${tentativa}] Modelo ${modelo} indisponível (${response.status})...`);
+    } catch (erroRede) {
+      ultimoErro = erroRede.message;
     }
 
-    if (tentativa < 3) {
-      console.log('Aguardando 20 segundos antes de tentar novamente...');
-      await esperar(20000);
+    console.warn(`[Tentativa ${tentativa}/4] Falha temporária (${ultimoErro.slice(0, 120)})...`);
+
+    if (tentativa < 4) {
+      console.log('Aguardando 15 segundos antes de tentar novamente...');
+      await esperar(15000);
     }
   }
 
-  throw new Error(`Falha após 3 tentativas em todos os modelos: ${ultimoErro}`);
+  throw new Error(`Falha após 4 tentativas no modelo ${MODELO_ESTAVEL}: ${ultimoErro}`);
 }
 
 async function gerarNovaPautaInedita(pautasExistentes) {
@@ -152,7 +151,6 @@ function atualizarIndiceESitemap(pautas) {
     .filter(p => p.status === 'publicado')
     .sort((a, b) => new Date(b.data) - new Date(a.data));
 
-  // 1. Gerar cards e página blog/index.html
   const cardsHtml = publicados.map(post => `
     <article class="post-card">
       <time datetime="${post.data}">${formatarDataBR(post.data)}</time>
@@ -197,7 +195,6 @@ function atualizarIndiceESitemap(pautas) {
   fs.writeFileSync('./blog/index.html', indexHtml, 'utf-8');
   console.log('blog/index.html atualizado.');
 
-  // 2. Regenerar sitemap.xml na raiz
   const dataHoje = new Date().toISOString().split('T')[0];
 
   const paginasFixas = [
@@ -240,7 +237,6 @@ async function main() {
     const pautas = JSON.parse(fs.readFileSync(PAUTAS_PATH, 'utf-8'));
     let proxima = pautas.find(p => p.status === 'pendente');
 
-    // Modo Infinito: se acabaram as pautas pendentes, cria uma nova inédita automaticamente
     if (!proxima) {
       console.log('Fila inicial concluída. Gerando nova pauta inédita via Gemini...');
       proxima = await gerarNovaPautaInedita(pautas);
@@ -265,12 +261,10 @@ async function main() {
       .replaceAll('{{CONTEUDO_HTML}}', artigo.conteudo_html)
       .replaceAll('{{SCHEMA_FAQ}}', faqSchema);
 
-    // Salva o arquivo HTML do novo artigo
     const caminhoArtigo = `./blog/${slugFinal}.html`;
     fs.writeFileSync(caminhoArtigo, html, 'utf-8');
     console.log(`Artigo salvo em: ${caminhoArtigo}`);
 
-    // Atualiza o status no pautas.json
     proxima.status = 'publicado';
     proxima.slug = slugFinal;
     proxima.titulo = artigo.titulo;
@@ -278,7 +272,6 @@ async function main() {
     proxima.data = dataIso;
     fs.writeFileSync(PAUTAS_PATH, JSON.stringify(pautas, null, 2), 'utf-8');
 
-    // Atualiza blog/index.html e sitemap.xml
     atualizarIndiceESitemap(pautas);
     console.log('Processo concluído com sucesso!');
   } catch (erro) {
