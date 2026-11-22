@@ -11,9 +11,13 @@
   },
   {
     "id": 2,
-    "status": "pendente",
+    "status": "publicado",
     "tema": "Manicure e esmaltação em gel perto da Savassi e Funcionários: o que avaliar antes de agendar",
-    "keyword": "manicure funcionarios bh"
+    "keyword": "manicure funcionarios bh",
+    "slug": "manicure-funcionarios-bh-esmaltacao-em-gel",
+    "titulo": "Manicure em Funcionários BH: Guia da Esmaltação em Gel",
+    "resumo": "Para escolher um serviço de manicure e esmaltação em gel no bairro Funcionários em BH, avalie a biossegurança dos instrumentos, a qualidade dos géis e a capacitação técnica das profissionais. A técnica ideal garante durabilidade superior a 15 dias, resistindo ao ritmo intenso da região Centro-Sul sem danificar as unhas naturais.",
+    "data": "2026-11-22"
   },
   {
     "id": 3,
