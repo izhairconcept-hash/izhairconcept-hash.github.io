@@ -1,12 +1,5 @@
-      - name: Conferir arquivos e gerar artigo via Gemini
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          ls -la
-          ls -la blog/ || true
-          node scripts/gerar-blog.js
-
 name: Publicar Artigo Semanal no Blog
+
 on:
   schedule:
     # Roda toda terça e quinta às 09:00 (horário de Brasília = 12:00 UTC)
@@ -21,13 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Gerar artigo via Gemini
+
+      - name: Conferir arquivos e gerar artigo via Gemini
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node scripts/gerar-blog.js
+        run: |
+          ls -la
+          ls -la blog/ || true
+          node scripts/gerar-blog.js
+
       - name: Commit e Push para GitHub Pages
         run: |
           git config user.name "Izzy Bot"
