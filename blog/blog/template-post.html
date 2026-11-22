@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITULO}} | Iz Hair Concept - Funcionários, BH</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <link rel="canonical" href="https://izhairconcept.com.br/blog/{{SLUG}}.html">
+
+  <!-- Google Tag / GA4 + Google Ads (já usados no seu site) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLC9N89TR8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZLC9N89TR8');
+    gtag('config', 'AW-18556249023');
+  </script>
+
+  <!-- Dados Estruturados para Google e Motores de IA (GEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "{{TITULO}}",
+        "datePublished": "{{DATA_ISO}}",
+        "author": {
+          "@type": "Organization",
+          "name": "Iz Hair Concept",
+          "url": "https://izhairconcept.com.br"
+        },
+        "publisher": {
+          "@type": "HairSalon",
+          "name": "Iz Hair Concept",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua Piauí, 1285",
+            "addressLocality": "Belo Horizonte",
+            "addressRegion": "MG",
+            "addressCountry": "BR"
+          }
+        }
+      },
+      {{SCHEMA_FAQ}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <article>
+    <nav><a href="/">Início</a> &gt; <a href="/blog/">Blog</a></nav>
+    <h1>{{TITULO}}</h1>
+    
+    <!-- Bloco Resumo para IAs (Snippet direto) -->
+    <aside class="resumo-ia">
+      <strong>Em resumo:</strong> {{RESUMO_DIRETO}}
+    </aside>
+
+    {{CONTEUDO_HTML}}
+
+    <section class="cta-local">
+      <h2>Agende seu horário no Funcionários, BH</h2>
+      <p>O <strong>Iz Hair Concept</strong> fica na Rua Piauí, 1285 (próximo à Savassi e Av. Brasil). Fale com nossa equipe pelo WhatsApp:</p>
+      <a href="https://wa.me/5531999999999?text=Olá! Li o artigo sobre {{TITULO}} e gostaria de agendar." 
+         onclick="gtag('event', 'conversion', {'send_to': 'AW-18556249023'});">
+        Agendar pelo WhatsApp
+      </a>
+    </section>
+  </article>
+</body>
+</html>
