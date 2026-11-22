@@ -723,6 +723,11 @@
       .hamburger { flex-shrink: 0; }
 
       .sobre-grid, .trico-grid, .footer-grid, .lead-grid { grid-template-columns: 1fr; gap: 60px; }
+      .sobre-grid > *, .trico-grid > *, .lead-grid > *, .footer-grid > * { min-width: 0; max-width: 100%; }
+      .sobre-frame { left: 0; top: 12px; }
+      .sobre-accent { right: 0; bottom: -12px; }
+      .sobre-stats { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+
       .nav-links { display: none; }
       .hamburger { display: flex; }
       
