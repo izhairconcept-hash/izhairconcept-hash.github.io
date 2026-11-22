@@ -2,26 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://izhairconcept.com.br/</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-11-22</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://izhairconcept.com.br/blog/metodo-iz.html</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://izhairconcept.com.br/wifi/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://izhairconcept.com.br/blog/</loc>
+    <lastmod>2026-11-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://izhairconcept.com.br/blog/saude-couro-cabeludo.html</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://izhairconcept.com.br/blog/loiro-alta-performance.html</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://izhairconcept.com.br/blog/cronograma-capilar-belo-horizonte-clima-seco.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>

@@ -1,9 +1,13 @@
 [
   {
     "id": 1,
-    "status": "pendente",
+    "status": "publicado",
     "tema": "Cronograma capilar para o clima seco de Belo Horizonte: como evitar o ressecamento",
-    "keyword": "cronograma capilar belo horizonte"
+    "keyword": "cronograma capilar belo horizonte",
+    "slug": "cronograma-capilar-belo-horizonte-clima-seco",
+    "titulo": "Cronograma Capilar em Belo Horizonte: Como Evitar o Ressecamento",
+    "resumo": "O cronograma capilar em Belo Horizonte exige adaptações devido ao clima seco e à baixa umidade da região Centro-Sul. Alternar hidratação profunda, nutrição rica em óleos e reconstrução protege a fibra capilar do ressecamento severo. No Iz Hair Concept, personalizamos esse tratamento para devolver o brilho e a maciez aos seus cabelos.",
+    "data": "2026-11-22"
   },
   {
     "id": 2,
