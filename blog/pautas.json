@@ -31,9 +31,13 @@
   },
   {
     "id": 4,
-    "status": "pendente",
+    "status": "publicado",
     "tema": "Blindagem e banho de gel nas unhas: como proteger as unhas naturais contra quebras",
-    "keyword": "blindagem de unhas funcionarios bh"
+    "keyword": "blindagem de unhas funcionarios bh",
+    "slug": "blindagem-banho-de-gel-unhas-naturais",
+    "titulo": "Blindagem e Banho de Gel: O Escudo para Unhas Perfeitas",
+    "resumo": "A blindagem e o banho de gel criam uma barreira estrutural sobre a lâmina ungueal, prevenindo descamações e quebras sem alterar o comprimento natural. Enquanto a blindagem sela a superfície com camadas finas de gel ou base fortalecedora, o banho de gel oferece um reforço denso e resistente, garantindo brilho duradouro e esmaltação intacta.",
+    "data": "2026-11-22"
   },
   {
     "id": 5,
