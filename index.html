@@ -716,6 +716,12 @@
         RESPONSIVIDADE (MEDIA QUERIES)
     ============================================================ */
     @media (max-width: 992px) {
+      html, body { max-width: 100%; overflow-x: hidden; }
+      header .container { padding: 0 16px; }
+      .logo { max-width: calc(100% - 44px); }
+      .logo-sub { letter-spacing: 0.16em; font-size: 0.5rem; }
+      .hamburger { flex-shrink: 0; }
+
       .sobre-grid, .trico-grid, .footer-grid, .lead-grid { grid-template-columns: 1fr; gap: 60px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -732,11 +738,18 @@
       }
       .galeria-item:nth-child(1) { aspect-ratio: auto; }
 
-      .hero-content { margin-left: 0; text-align: center; padding-top: 160px; }
+      .hero-content { margin-left: 0; width: 100%; max-width: 100%; text-align: center; padding-top: 140px; }
+      .hero-logo-wrapper img { max-width: 260px; width: 100% !important; margin: 0 auto; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
       .hero-actions { justify-content: center; }
       .hero-badge { display: none; }
+      .servicos-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .servicos-grid { grid-template-columns: 1fr; }
       .depo-grid { grid-template-columns: 1fr; }
       .agendar-info { grid-template-columns: 1fr; gap: 30px; }
+      .lead-form-card { padding: 32px 20px; }
+      .wa-float { bottom: 20px; right: 16px; padding: 12px 18px; font-size: 0.8rem; }
     }
 
     /* ============================================================
