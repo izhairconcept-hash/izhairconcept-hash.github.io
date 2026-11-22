@@ -4,7 +4,7 @@ const API_KEY = process.env.GEMINI_API_KEY;
 const PAUTAS_PATH = './blog/pautas.json';
 const TEMPLATE_PATH = './blog/template-post.html';
 const DOMAIN = 'https://izhairconcept.com.br';
-const MODELO_ESTAVEL = 'gemini-flash-latest';
+const MODELO_ESTAVEL = 'gemini-3.6-flash-lite';
 
 function esperar(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
