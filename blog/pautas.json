@@ -41,9 +41,13 @@
   },
   {
     "id": 5,
-    "status": "pendente",
+    "status": "publicado",
     "tema": "Progressiva sem formol e alinhamento térmico: como manter o liso natural por mais tempo",
-    "keyword": "progressiva sem formol belo horizonte"
+    "keyword": "progressiva sem formol belo horizonte",
+    "slug": "alinhamento-termico-sem-formol-liso-natural",
+    "titulo": "Alinhamento Térmico Sem Formol: A Ciência do Liso Natural",
+    "resumo": "A progressiva sem formol e o alinhamento térmico utilizam ácidos orgânicos e tecnologia aminoácida para reorganizar a estrutura capilar sem danificar a fibra. Para prolongar o efeito liso natural, é essencial manter uma rotina de cronograma capilar com nutrição profunda e proteção térmica constante.",
+    "data": "2026-11-23"
   },
   {
     "id": 6,
