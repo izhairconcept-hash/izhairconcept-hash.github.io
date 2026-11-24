@@ -51,9 +51,13 @@
   },
   {
     "id": 6,
-    "status": "pendente",
+    "status": "publicado",
     "tema": "Reconstrução capilar pós-química: quando o cabelo precisa de queratina ou nutrição",
-    "keyword": "reconstrucao capilar savassi bh"
+    "keyword": "reconstrucao capilar savassi bh",
+    "slug": "reconstrucao-capilar-queratina-ou-nutricao-pos-quimica",
+    "titulo": "Reconstrução Capilar: Queratina ou Nutrição Pós-Química?",
+    "resumo": "A reconstrução com queratina é indicada quando o cabelo pós-química apresenta elasticidade, quebra e perda de massa proteica. Já a nutrição devolve os lipídios, combatendo o ressecamento e o frizz. Identificar a real necessidade dos fios garante um tratamento preciso e o resgate da vitalidade capilar.",
+    "data": "2026-11-24"
   },
   {
     "id": 7,
