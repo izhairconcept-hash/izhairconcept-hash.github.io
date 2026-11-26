@@ -61,9 +61,13 @@
   },
   {
     "id": 7,
-    "status": "pendente",
+    "status": "publicado",
     "tema": "Alongamento de unhas em fibra de vidro vs gel: qual dura mais na rotina do dia a dia",
-    "keyword": "alongamento de unhas funcionarios bh"
+    "keyword": "alongamento de unhas funcionarios bh",
+    "slug": "alongamento-de-unhas-fibra-de-vidro-vs-gel-durabilidade",
+    "titulo": "Fibra de Vidro ou Gel: Qual Alongamento Dura Mais?",
+    "resumo": "A fibra de vidro oferece maior resistência mecânica a impactos do dia a dia, sendo ideal para rotinas agitadas. O gel se destaca pela flexibilidade e acabamento ultra suave. Com a manutenção adequada a cada 20 a 25 dias, a fibra de vidro tende a durar mais sem trincas ou torções.",
+    "data": "2026-11-26"
   },
   {
     "id": 8,
